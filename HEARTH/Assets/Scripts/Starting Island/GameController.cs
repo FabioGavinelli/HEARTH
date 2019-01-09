@@ -272,6 +272,7 @@ public class GameController : MonoBehaviour {
     private IEnumerator StartEndVideo()
     {
         yield return new WaitForSeconds(5f);
+        speaker.volume = 0.5f;
         this.GetComponent<VideoPlayer>().Play();
         //blackScreenCanvas.SetActive(false);
         StartCoroutine(LoadNewSceneAfterVideo());
