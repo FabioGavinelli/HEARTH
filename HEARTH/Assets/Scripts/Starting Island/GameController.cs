@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private AudioSource waveSound;
     [SerializeField] private AudioSource pianoSound;
-    [SerializeField] private VideoPlayer endLevelVideo;
+    [SerializeField] private VideoClip endLevelVideo;
     [SerializeField] private GameObject blackScreenCanvas;
     private PlayerBehaviour pb;
     private Animator playerAnimator;
@@ -220,8 +220,9 @@ public class GameController : MonoBehaviour {
         //fade to black
         blackScreenCanvas.SetActive(true);
         StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 3f)); ;
-        
+
         //start video
+        this.GetComponent<VideoPlayer>().clip = endLevelVideo;
         StartCoroutine(StartEndVideo());
     }
 
@@ -271,7 +272,7 @@ public class GameController : MonoBehaviour {
     private IEnumerator StartEndVideo()
     {
         yield return new WaitForSeconds(5f);
-        endLevelVideo.Play();
+        this.GetComponent<VideoPlayer>().Play();
         //blackScreenCanvas.SetActive(false);
         StartCoroutine(LoadNewSceneAfterVideo());
     }
