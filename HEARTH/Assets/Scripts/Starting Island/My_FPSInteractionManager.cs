@@ -151,17 +151,18 @@ public class My_FPSInteractionManager : MonoBehaviour
             return;
 
         pb.setGrabbedState(false);
-        repairState++;
 
         if (_grabbedObject.transform.tag == "MetalPlate" && enteredShipZone && owningHammer && owningNails) {
 
             _grabbedObject.gameObject.SetActive(false);
+            repairState++;
             showable = true;
             StartCoroutine(DisableCollider());
 
         } else if (_grabbedObject.transform.tag == "Oar" && enteredShipZone) {
             _oar.SetActive(true);
             _grabbedObject.gameObject.SetActive(false);
+            repairState++;
             SetGrabbing();
 
         } else {

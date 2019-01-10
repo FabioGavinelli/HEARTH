@@ -233,8 +233,8 @@ public class GameController : MonoBehaviour {
             phase++;
             playerAnimator.SetBool("Watch", false);
             pb.SetPlayerToActive(true);
-            pb.DisablePlayerController(true);
-            pb.SetCameraToHead(false);
+            StartCoroutine(pb.DisablePlayerControlsForTime(2f));
+            StartCoroutine(pb.SetCameraToAnimPosition(2f));
             menuCanvas.SetActive(false);
             pianoSound.Play();
         }
