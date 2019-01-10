@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private bool menuState = false;
 
     private bool keyboardInput = true;
+    private bool activePlayer = false;
 
     private void Start()
     {
@@ -31,8 +32,10 @@ public class PlayerBehaviour : MonoBehaviour {
         float moveVertical = Input.GetAxis("Vertical");
         bool running = Input.GetKey(KeyCode.LeftShift);
         float speed = ((running) ? 1 : 0.5f);
-        bool jumping = Input.GetKey(KeyCode.Space);
+        bool jumping = Input.GetKeyDown(KeyCode.Space);
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+         if (!activePlayer) return;
 
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
@@ -67,7 +70,6 @@ public class PlayerBehaviour : MonoBehaviour {
             else
                 StartCoroutine(SetCameraToAnimPosition(1f));
 
-            FPSCharacter.transform.localRotation = Quaternion.identity;
             GetComponentInChildren<Animator>().SetBool("Watch", menuState);
             DisablePlayerController(!menuState);
 
@@ -87,13 +89,10 @@ public class PlayerBehaviour : MonoBehaviour {
         lifePoints = lp;
     }
 
-    /* ---- WATER DAMAGE FUNCTIONS ---- */
     public void Damage(float damage)
     {
         lifePoints -= damage;
     }
-
-    /* ---- HEALING FUNCTIONS ---- */
 
     public void Heal(float health)
     {
@@ -111,10 +110,12 @@ public class PlayerBehaviour : MonoBehaviour {
         GetComponent<CharacterController>().enabled = false;
         GetComponent<My_FPSController>().enabled = false;
         keyboardInput = false;
+        activePlayer = false;
         yield return new WaitForSeconds(time);
         GetComponent<CharacterController>().enabled = true;
         GetComponent<My_FPSController>().enabled = true;
         keyboardInput = true;
+        activePlayer = true;
     }
 
     public void DisablePlayerController(bool state)
@@ -134,13 +135,25 @@ public class PlayerBehaviour : MonoBehaviour {
         return keyboardInput;
     }
 
+    public void SetPlayerToActive(bool state)
+    {
+        activePlayer = state;
+    }
+
+    public bool IsPlayerActive()
+    {
+        return activePlayer;
+    }
+
     /* ---- CAMERA FUNCTIONS ---- */
 
     public IEnumerator SetCameraToAnimPosition(float animationTime)
     {
         //Set camera child of the head
+        FPSCharacter.transform.localRotation = Quaternion.identity;
         FPSCharacter.transform.SetParent(cameraAnimationPosition);
         FPSCharacter.transform.localPosition = Vector3.zero;
+        
         //Wait till animation is end
         yield return new WaitForSeconds(animationTime);
         //Set camera child of the character

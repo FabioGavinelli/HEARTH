@@ -11,14 +11,15 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject wakeUpPPEffect;
-    [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject damagePPEffect;
     [SerializeField] private AudioClip alarmClock;
-    [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private AudioSource waveSound;
     [SerializeField] private AudioSource pianoSound;
     [SerializeField] private VideoClip endLevelVideo;
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private GameObject blackScreenCanvas;
+    [SerializeField] private GameObject menuCanvas;
     private PlayerBehaviour pb;
     private Animator playerAnimator;
     private bool ended = false;
@@ -84,18 +85,23 @@ public class GameController : MonoBehaviour {
                         pb.SetKeyboardInput(false);
                         StartCoroutine(timedTutorialText(tutorialCanvas, phase, 11f));
                     }
-                    break;
+                break;
 
-                case 1:
-                    phase++;
-                    tutorialCanvas.SetActive(false);
-                    speaker.Stop();
-                    playerAnimator.SetBool("Watch", true);
-                    //canvas menu con biglietto
-                    //background music start
-                    pianoSound.Play();
-                    break;
+                /*
+            case 1:
+                phase++;
+                pianoSound.Play();
+                break;
+                */
 
+            case 1:
+                phase++;
+                speaker.Stop();
+                tutorialCanvas.SetActive(false);
+                playerAnimator.SetBool("Watch", true);
+                StartCoroutine(ShowMenuCanvas());
+            break;
+            
                 default:
                     break;
 
@@ -186,8 +192,19 @@ public class GameController : MonoBehaviour {
         canvasText.text = tutorialMessages[textIndex];
         canvas.SetActive(true);
         pb.SetKeyboardInput(true);
+
+        /*
+        speaker.Stop();
+        playerAnimator.SetBool("Watch", true);
+        */
     }
-    
+
+    private IEnumerator ShowMenuCanvas()
+    {
+        yield return new WaitForSeconds(1f);
+        menuCanvas.SetActive(true);
+    }
+
     private void PhaseOne()
     {
         //Disable character controller
@@ -202,6 +219,20 @@ public class GameController : MonoBehaviour {
         eye.weight = 1;
         //text setup
         tutorialText.text = "PREMI IL TASTO AZIONE [E] PER ALZARTI";
+    }
+
+    public void QuitFromTicket()
+    {
+        if (phase == 2)
+        {
+            phase++;
+            playerAnimator.SetBool("Watch", false);
+            pb.SetPlayerToActive(true);
+            pb.DisablePlayerController(true);
+            pb.SetCameraToHead(false);
+            menuCanvas.SetActive(false);
+            pianoSound.Play();
+        }
     }
 
     /* ---- END LEVEL FUNCTIONS ---- */
