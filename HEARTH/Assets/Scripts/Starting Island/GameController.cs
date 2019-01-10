@@ -88,6 +88,7 @@ public class GameController : MonoBehaviour {
                 break;
 
                 /*
+                 * VERSIONE CON PHASE 1 GESTITA DAL TIMED TUTORIAL
             case 1:
                 phase++;
                 pianoSound.Play();
@@ -101,6 +102,10 @@ public class GameController : MonoBehaviour {
                 playerAnimator.SetBool("Watch", true);
                 StartCoroutine(ShowMenuCanvas());
             break;
+
+             /*
+              *  Phase 2 gestita da chiusura biglietto
+              */
             
                 default:
                     break;
@@ -201,7 +206,7 @@ public class GameController : MonoBehaviour {
 
     private IEnumerator ShowMenuCanvas()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         menuCanvas.SetActive(true);
     }
 

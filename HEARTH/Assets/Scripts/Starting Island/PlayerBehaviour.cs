@@ -40,10 +40,7 @@ public class PlayerBehaviour : MonoBehaviour {
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
         {
-            if (grabbed)
-                anim.SetFloat("Motion Speed", speed);
-            else
-                anim.SetFloat("Motion Speed", speed);
+            anim.SetFloat("Motion Speed", speed);
         }
         else
         {
@@ -59,20 +56,24 @@ public class PlayerBehaviour : MonoBehaviour {
         */
 
         // Open menu
-        if (Input.GetKeyDown(KeyCode.Tab) && stateInfo.fullPathHash != jumpStateHash)
+        if (Input.GetKeyDown(KeyCode.Tab) && stateInfo.fullPathHash != jumpStateHash && IsKeyboardActive())
         {
             menuState = !menuState;
             //menuCanvas.setActive(menuState);
             Cursor.visible = menuState;
 
             if (menuState)
+            {
                 SetCameraToHead(menuState);
+                DisablePlayerController(!menuState);
+            }
             else
+            {
+                StartCoroutine(DisablePlayerControlsForTime(2f));
                 StartCoroutine(SetCameraToAnimPosition(1f));
-
+            }
+                
             GetComponentInChildren<Animator>().SetBool("Watch", menuState);
-            DisablePlayerController(!menuState);
-
         }
     }
 
@@ -109,12 +110,10 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         GetComponent<CharacterController>().enabled = false;
         GetComponent<My_FPSController>().enabled = false;
-        keyboardInput = false;
         activePlayer = false;
         yield return new WaitForSeconds(time);
         GetComponent<CharacterController>().enabled = true;
         GetComponent<My_FPSController>().enabled = true;
-        keyboardInput = true;
         activePlayer = true;
     }
 
@@ -122,10 +121,9 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         GetComponent<CharacterController>().enabled = state;
         GetComponent<My_FPSController>().enabled = state;
-        keyboardInput = state;
     }
 
-    public void SetKeyboardInput(bool state)
+    public void SetKeyboardInput(bool state) //impedisce la pressione di alcuni tasti
     {
         keyboardInput = state;
     }
@@ -135,7 +133,7 @@ public class PlayerBehaviour : MonoBehaviour {
         return keyboardInput;
     }
 
-    public void SetPlayerToActive(bool state)
+    public void SetPlayerToActive(bool state) //impedisce personaggio di fare cose
     {
         activePlayer = state;
     }
