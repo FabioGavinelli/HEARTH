@@ -41,12 +41,15 @@ public class GameController : MonoBehaviour {
 
     private void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
+
+        //Set Up Variables
         respawnLocation = player.transform.position;
         speaker = GetComponent<AudioSource>();
         tutorialText = tutorialCanvas.GetComponentInChildren<Text>();
         pb = player.GetComponent<PlayerBehaviour>();
         playerAnimator = player.GetComponentInChildren<Animator>();
+        //Start Game
         if (phase == 0) PhaseOne();
     }
 
@@ -78,8 +81,7 @@ public class GameController : MonoBehaviour {
                         phase++;
                         playerAnimator.SetTrigger("Wake");
                         tutorialCanvas.SetActive(false);
-                        StartCoroutine(pb.DisablePlayerControlsForTime(11f));
-                        //StartCoroutine(pb.SetCameraToAnimPosition(12f));
+                        pb.SetKeyboardInput(false);
                         StartCoroutine(timedTutorialText(tutorialCanvas, phase, 11f));
                     }
                     break;
@@ -183,6 +185,7 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(time);
         canvasText.text = tutorialMessages[textIndex];
         canvas.SetActive(true);
+        pb.SetKeyboardInput(true);
     }
     
     private void PhaseOne()
@@ -211,9 +214,6 @@ public class GameController : MonoBehaviour {
         //disable player
         pb.DisablePlayerController(false);
         //mute all sounds
-        Debug.Log("Volume " + speaker.volume);
-        Debug.Log("Volume " + waveSound.volume);
-        Debug.Log("Volume " + pianoSound.volume);
         if (speaker.volume > 0) StartCoroutine(volumeDown(speaker, 0f));
         if (waveSound.volume > 0) StartCoroutine(volumeDown(waveSound, 0f));
         if (pianoSound.volume > 0) StartCoroutine(volumeDown(pianoSound, 0f));
