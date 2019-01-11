@@ -148,7 +148,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public IEnumerator SetCameraToAnimPosition(float animationTime)
     {
         //Set camera child of the head
-        //FPSCharacter.transform.localRotation = Quaternion.identity;
+        FPSCharacter.transform.localRotation = Quaternion.identity;
         FPSCharacter.transform.SetParent(cameraAnimationPosition);
         FPSCharacter.transform.localPosition = Vector3.zero;
         //Wait till animation is end
