@@ -41,6 +41,7 @@ public class WaterDamage : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("entrato acqua");
         if (other.gameObject.CompareTag("Player"))
         {
             invicible = false;
