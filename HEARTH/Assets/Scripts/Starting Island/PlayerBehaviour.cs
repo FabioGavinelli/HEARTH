@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour {
@@ -19,6 +20,9 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private bool keyboardInput = true;
     private bool activePlayer = false;
+
+    private Vector3 watchRotation = new Vector3(-7.88188f, 0f, 0f);
+    private Vector3 liftRotation = Vector3.zero;
 
     private void Start()
     {
@@ -64,6 +68,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
             if (menuState)
             {
+                //MoveCameraFromPositions(Vector3.zero, watchRotation, 1f);
                 SetCameraToHead(menuState);
                 DisablePlayerController(!menuState);
             }
@@ -148,29 +153,42 @@ public class PlayerBehaviour : MonoBehaviour {
     public IEnumerator SetCameraToAnimPosition(float animationTime)
     {
         //Set camera child of the head
-        FPSCharacter.transform.localRotation = Quaternion.identity;
+        FPSCharacter.transform.localRotation = Quaternion.identity; // SOSTITUIRE SEMPLICE RESET CON DOTWEEN
         FPSCharacter.transform.SetParent(cameraAnimationPosition);
         FPSCharacter.transform.localPosition = Vector3.zero;
+       
         //Wait till animation is end
         yield return new WaitForSeconds(animationTime);
+       
         //Set camera child of the character
         FPSCharacter.transform.SetParent(cameraGameplayPosition);
         FPSCharacter.transform.localPosition = Vector3.zero;
+
+        this.GetComponent<My_FPSController>().ResetView();
     }
 
     public void SetCameraToHead(bool set)
     {
         if (set)
         {
-            //FPSCharacter.transform.localRotation = Quaternion.identity;
+            FPSCharacter.transform.localRotation = Quaternion.identity; // SOSTITUIRE SEMPLICE RESET CON DOTWEEN
             FPSCharacter.transform.SetParent(cameraAnimationPosition);
             FPSCharacter.transform.localPosition = Vector3.zero;
         }
         else
         {
             FPSCharacter.transform.SetParent(cameraGameplayPosition);
+            this.GetComponent<My_FPSController>().ResetView();
             FPSCharacter.transform.localPosition = Vector3.zero;
         }
+    }
+
+    public void MoveCameraFromPositions(Vector3 endPosition, Vector3 endRotation, float time)
+    {
+        if (endPosition == null) return;
+
+        FPSCharacter.transform.DOLocalMove(endPosition, time);
+        FPSCharacter.transform.DOLocalRotate(endRotation, time);
     }
 
     public void setGrabbedState(bool state)

@@ -125,6 +125,7 @@ public class My_FPSInteractionManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+
                     //GetComponentInChildren<Camera>().transform.localRotation = Quaternion.identity;
                     this.gameObject.GetComponentInChildren<Animator>().SetTrigger("Lift");
                     StartCoroutine(pb.SetCameraToAnimPosition(3f));
