@@ -7,27 +7,36 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour {
 
     [SerializeField] private GameObject FPSCharacter;
-    [SerializeField] private Transform cameraGameplayPosition;
-    [SerializeField] private Transform cameraAnimationPosition;
-    private Animator anim;
+    [SerializeField] private Transform headBonePosition;
+    [SerializeField] private Transform gameplayPosition;
+    [SerializeField] private Transform animationPosition;
+    private My_MouseLook mouseLook;
+    private Camera fpsCamera;
+    private Animator animator;
     private Transform camPosition;
-    private int jumpStateHash = Animator.StringToHash("Base Layer.Jump");
-    private bool grabbed = false;
-
     public float lifePoints;
 
     private bool menuState = false;
+    private bool grabbed = false;
 
     private bool keyboardInput = true;
     private bool activePlayer = false;
 
-    private Vector3 watchRotation = new Vector3(-7.88188f, 0f, 0f);
-    private Vector3 liftRotation = Vector3.zero;
+    public enum animations { Watch, Lift, Walk, Run, Jump, StandUp};
+    private int watchAnimHash = Animator.StringToHash("Watch");
+    private int liftAnimHash = Animator.StringToHash("Lift");
+    private int speedAnimHash = Animator.StringToHash("Motion Speed");
+    private int objAnimHash = Animator.StringToHash("Obj");
+    private int wakeAnimHash = Animator.StringToHash("Wake");
+    private int jumpStateHash = Animator.StringToHash("Base Layer.Jump");
+
 
     private void Start()
     {
         lifePoints = 100f;
-        anim = GetComponentInChildren<Animator>();
+        fpsCamera = Camera.main;
+        animator = GetComponentInChildren<Animator>();
+        mouseLook = this.GetComponent<My_FPSController>().getMouseLook();
     }
 
     private void Update()
@@ -37,18 +46,20 @@ public class PlayerBehaviour : MonoBehaviour {
         bool running = Input.GetKey(KeyCode.LeftShift);
         float speed = ((running) ? 1 : 0.5f);
         bool jumping = Input.GetKeyDown(KeyCode.Space);
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-         if (!activePlayer) return;
+        //if (!activePlayer) return;
+
+        CameraOffset(headBonePosition);
 
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
         {
-            anim.SetFloat("Motion Speed", speed);
+            animator.SetFloat(speedAnimHash, speed);
         }
         else
         {
-            anim.SetFloat("Motion Speed", 0f);
+            animator.SetFloat(speedAnimHash, 0f);
         }
 
         /*
@@ -65,10 +76,11 @@ public class PlayerBehaviour : MonoBehaviour {
             menuState = !menuState;
             //menuCanvas.setActive(menuState);
             Cursor.visible = menuState;
+            TriggerAnimation((int)animations.Watch);
 
+            /*
             if (menuState)
             {
-                //MoveCameraFromPositions(Vector3.zero, watchRotation, 1f);
                 SetCameraToHead(menuState);
                 DisablePlayerController(!menuState);
             }
@@ -79,9 +91,11 @@ public class PlayerBehaviour : MonoBehaviour {
             }
                 
             GetComponentInChildren<Animator>().SetBool("Watch", menuState);
-        }
-    }
+            */
 
+        }
+
+    }
 
     /* ---- LIFE FUNCTIONS ---- */
 
@@ -108,6 +122,139 @@ public class PlayerBehaviour : MonoBehaviour {
             lifePoints = 100;
         }
     }
+
+
+    public void TriggerAnimation(int animationIndex)
+    {
+        float animationTime = 0;
+        bool onlyDisable = false;
+        Vector3 finalHeadPosition;
+
+        SwitchCameraParent(true);
+
+        switch (animationIndex)
+        {
+            case (int)animations.Watch:
+
+                animationTime = 2f;
+                finalHeadPosition = ((menuState) ? new Vector3(45f, 0f, 0f) : new Vector3(0f, 0f, 0f));
+
+                animator.SetBool(watchAnimHash, menuState);
+                fpsCamera.transform.DOLocalRotate(finalHeadPosition, animationTime);
+                onlyDisable = menuState;
+
+                break;
+
+            case (int)animations.Lift:
+
+                animationTime = 7f;
+                finalHeadPosition = new Vector3(0f, 0f, 0f);
+
+                animator.SetTrigger(liftAnimHash);
+                fpsCamera.transform.DOLocalRotate(finalHeadPosition, animationTime);
+                onlyDisable = false;
+                
+                break;
+
+            default:
+                break;
+        }
+
+        
+        StartCoroutine(DisableControlsDuringAnimation(animationTime, false));
+        StartCoroutine(ResetParentAfterAnimation(animationTime));
+
+    }
+
+    private void SetPlayerControls(bool state)
+    {
+        this.GetComponent<My_FPSController>().enabled = state;
+        this.GetComponent<CharacterController>().enabled = state;
+    }
+
+    private IEnumerator DisableControlsDuringAnimation(float time, bool onlyDisable)
+    {
+        SetPlayerControls(false);
+
+        if (!onlyDisable)
+        {
+            yield return new WaitForSeconds(time);
+
+            mouseLook.Init(this.transform, fpsCamera.transform);
+            SetPlayerControls(true);
+        }
+        
+    }
+
+    private IEnumerator ResetParentAfterAnimation(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SwitchCameraParent(false);
+    }
+
+
+    private void CameraOffset(Transform headBoneTransform)
+    {
+        gameplayPosition.transform.localPosition = new Vector3(0, headBoneTransform.transform.localPosition.y + 0.00096f, headBoneTransform.transform.localPosition.z - 0.0015f);  
+    }
+    
+    private void SwitchCameraParent(bool parentToHead)
+    {
+        if (parentToHead)
+        {
+            Debug.Log("TESTA");
+            FPSCharacter.transform.SetParent(animationPosition);
+        }
+        else
+        {
+            Debug.Log("BANDIIIIIT");
+            FPSCharacter.transform.SetParent(gameplayPosition);
+        }
+            
+            
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /* ---- CONTROLS FUNCTIONS ---- */
 
@@ -154,17 +301,15 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         //Set camera child of the head
         FPSCharacter.transform.localRotation = Quaternion.identity; // SOSTITUIRE SEMPLICE RESET CON DOTWEEN
-        FPSCharacter.transform.SetParent(cameraAnimationPosition);
+        FPSCharacter.transform.SetParent(gameplayPosition);
         FPSCharacter.transform.localPosition = Vector3.zero;
        
         //Wait till animation is end
         yield return new WaitForSeconds(animationTime);
        
         //Set camera child of the character
-        FPSCharacter.transform.SetParent(cameraGameplayPosition);
+        FPSCharacter.transform.SetParent(headBonePosition);
         FPSCharacter.transform.localPosition = Vector3.zero;
-
-        this.GetComponent<My_FPSController>().ResetView();
     }
 
     public void SetCameraToHead(bool set)
@@ -172,28 +317,19 @@ public class PlayerBehaviour : MonoBehaviour {
         if (set)
         {
             FPSCharacter.transform.localRotation = Quaternion.identity; // SOSTITUIRE SEMPLICE RESET CON DOTWEEN
-            FPSCharacter.transform.SetParent(cameraAnimationPosition);
+            FPSCharacter.transform.SetParent(gameplayPosition);
             FPSCharacter.transform.localPosition = Vector3.zero;
         }
         else
         {
-            FPSCharacter.transform.SetParent(cameraGameplayPosition);
-            this.GetComponent<My_FPSController>().ResetView();
+            FPSCharacter.transform.SetParent(headBonePosition);
             FPSCharacter.transform.localPosition = Vector3.zero;
         }
     }
 
-    public void MoveCameraFromPositions(Vector3 endPosition, Vector3 endRotation, float time)
-    {
-        if (endPosition == null) return;
-
-        FPSCharacter.transform.DOLocalMove(endPosition, time);
-        FPSCharacter.transform.DOLocalRotate(endRotation, time);
-    }
-
     public void setGrabbedState(bool state)
     {
-        anim.SetBool("Obj", state);
+        animator.SetBool("Obj", state);
         grabbed = state;
     }
 }

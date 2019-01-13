@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour {
     private void Start()
     {
         //Cursor.visible = false;
-
+        
         //Set Up Variables
         respawnLocation = player.transform.position;
         speaker = GetComponent<AudioSource>();
@@ -231,11 +231,15 @@ public class GameController : MonoBehaviour {
         if (phase == 2)
         {
             phase++;
-            playerAnimator.SetBool("Watch", false);
-            pb.SetPlayerToActive(true);
-            StartCoroutine(pb.DisablePlayerControlsForTime(2f));
-            StartCoroutine(pb.SetCameraToAnimPosition(2f));
+            player.GetComponent<PlayerBehaviour>().TriggerAnimation((int)PlayerBehaviour.animations.Watch);
+
+            
+            //playerAnimator.SetBool("Watch", false);
+            //pb.SetPlayerToActive(true);
+            //StartCoroutine(pb.DisablePlayerControlsForTime(2f));
+            //StartCoroutine(pb.SetCameraToAnimPosition(2f));
             menuCanvas.SetActive(false);
+            
             pianoSound.Play();
         }
     }

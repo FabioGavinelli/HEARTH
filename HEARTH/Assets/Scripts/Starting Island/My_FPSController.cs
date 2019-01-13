@@ -262,9 +262,9 @@ public class My_FPSController : MonoBehaviour {
         m_MouseLook.LookRotation(transform, m_Camera.transform);
     }
 
-    public void ResetView()
+    public My_MouseLook getMouseLook()
     {
-        m_MouseLook.Reset();
+        return m_MouseLook;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

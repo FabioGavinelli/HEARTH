@@ -26,11 +26,6 @@ public class My_MouseLook {
         m_CameraTargetRot = camera.localRotation;
     }
 
-    public void Reset()
-    {
-        m_CameraTargetRot = Quaternion.identity;
-    }
-
     public void LookRotation(Transform character, Transform camera)
     {
         float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
