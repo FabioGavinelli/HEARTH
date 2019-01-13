@@ -195,7 +195,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void CameraOffset(Transform headBoneTransform)
     {
-        gameplayPosition.transform.localPosition = new Vector3(0, headBoneTransform.transform.localPosition.y + 0.00096f, headBoneTransform.transform.localPosition.z - 0.0015f);  
+        gameplayPosition.transform.localPosition = new Vector3(0, headBoneTransform.transform.localPosition.y + 0.00096f, headBoneTransform.transform.position.z - 0.0015f);  
     }
     
     private void SwitchCameraParent(bool parentToHead)
@@ -215,65 +215,7 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /* ---- CONTROLS FUNCTIONS ---- */
-
-    public IEnumerator DisablePlayerControlsForTime(float time)
-    {
-        GetComponent<CharacterController>().enabled = false;
-        GetComponent<My_FPSController>().enabled = false;
-        activePlayer = false;
-        yield return new WaitForSeconds(time);
-        GetComponent<CharacterController>().enabled = true;
-        GetComponent<My_FPSController>().enabled = true;
-        activePlayer = true;
-    }
-
-    public void DisablePlayerController(bool state)
-    {
-        GetComponent<CharacterController>().enabled = state;
-        GetComponent<My_FPSController>().enabled = state;
-    }
 
     public void SetKeyboardInput(bool state) //impedisce la pressione di alcuni tasti
     {
@@ -293,38 +235,6 @@ public class PlayerBehaviour : MonoBehaviour {
     public bool IsPlayerActive()
     {
         return activePlayer;
-    }
-
-    /* ---- CAMERA FUNCTIONS ---- */
-
-    public IEnumerator SetCameraToAnimPosition(float animationTime)
-    {
-        //Set camera child of the head
-        FPSCharacter.transform.localRotation = Quaternion.identity; // SOSTITUIRE SEMPLICE RESET CON DOTWEEN
-        FPSCharacter.transform.SetParent(gameplayPosition);
-        FPSCharacter.transform.localPosition = Vector3.zero;
-       
-        //Wait till animation is end
-        yield return new WaitForSeconds(animationTime);
-       
-        //Set camera child of the character
-        FPSCharacter.transform.SetParent(headBonePosition);
-        FPSCharacter.transform.localPosition = Vector3.zero;
-    }
-
-    public void SetCameraToHead(bool set)
-    {
-        if (set)
-        {
-            FPSCharacter.transform.localRotation = Quaternion.identity; // SOSTITUIRE SEMPLICE RESET CON DOTWEEN
-            FPSCharacter.transform.SetParent(gameplayPosition);
-            FPSCharacter.transform.localPosition = Vector3.zero;
-        }
-        else
-        {
-            FPSCharacter.transform.SetParent(headBonePosition);
-            FPSCharacter.transform.localPosition = Vector3.zero;
-        }
     }
 
     public void setGrabbedState(bool state)

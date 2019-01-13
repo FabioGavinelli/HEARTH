@@ -125,18 +125,9 @@ public class My_FPSInteractionManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-
-                    //GetComponentInChildren<Camera>().transform.localRotation = Quaternion.identity;
-
-                    /*
-                    this.gameObject.GetComponentInChildren<Animator>().SetTrigger("Lift");
-                    StartCoroutine(pb.SetCameraToAnimPosition(3f));
-                    StartCoroutine(pb.DisablePlayerControlsForTime(3f));
-                    */
                     Transform grabbableTag = grabbableObject.transform;
                     grabbableObject.Grab(gameObject);
                     pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
-
                     //grabbableObject.gameObject.SetActive(false);
                     StartCoroutine(WaitingLifting(grabbableObject, 1.2f));
                     //Grab(grabbableObject);
@@ -199,7 +190,6 @@ public class My_FPSInteractionManager : MonoBehaviour
             pb.setGrabbedState(true);
             grabbable.transform.SetParent(_grabbedObjPosition);
         }
-        //Vector3 grabPosition = _leftHand.position + transform.forward * _grabDistance;
     }
 
     private void DebugRaycast()

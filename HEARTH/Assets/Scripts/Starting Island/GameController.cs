@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour {
         {
             //respawn player
             respawnable = false;
-            player.GetComponent<PlayerBehaviour>().DisablePlayerController(true);
+            player.GetComponent<My_FPSController>().enabled = true;
             gameOverCanvas.SetActive(false);
             //play music
             waveSound.Play();
@@ -140,7 +140,7 @@ public class GameController : MonoBehaviour {
         damagePPEffect.GetComponent<PostProcessVolume>().weight = 0;
         player.GetComponent<PlayerBehaviour>().setLifePoints(100f);
         player.transform.position = respawnLocation;
-        player.GetComponent<PlayerBehaviour>().DisablePlayerController(false);
+        player.GetComponent<My_FPSController>().enabled = false;
         gameOverCanvas.SetActive(true);
         StartCoroutine(FadeTextToFullAlpha(10f, gameOverCanvas.transform.GetChild(1).gameObject.GetComponent<Text>()));
         //stop music
@@ -197,11 +197,6 @@ public class GameController : MonoBehaviour {
         canvasText.text = tutorialMessages[textIndex];
         canvas.SetActive(true);
         pb.SetKeyboardInput(true);
-
-        /*
-        speaker.Stop();
-        playerAnimator.SetBool("Watch", true);
-        */
     }
 
     private IEnumerator ShowMenuCanvas()
@@ -213,8 +208,8 @@ public class GameController : MonoBehaviour {
     private void PhaseOne()
     {
         //Disable character controller
-        pb.DisablePlayerController(false);
-        
+        player.GetComponent<My_FPSController>().enabled = false;
+
         //alarm clock sound setup
         speaker.clip = alarmClock;
         speaker.Play();
@@ -232,12 +227,7 @@ public class GameController : MonoBehaviour {
         {
             phase++;
             player.GetComponent<PlayerBehaviour>().TriggerAnimation((int)PlayerBehaviour.animations.Watch);
-
-            
-            //playerAnimator.SetBool("Watch", false);
-            //pb.SetPlayerToActive(true);
-            //StartCoroutine(pb.DisablePlayerControlsForTime(2f));
-            //StartCoroutine(pb.SetCameraToAnimPosition(2f));
+            pb.SetPlayerToActive(true);
             menuCanvas.SetActive(false);
             
             pianoSound.Play();
@@ -252,7 +242,7 @@ public class GameController : MonoBehaviour {
         StopAllCoroutines();
 
         //disable player
-        pb.DisablePlayerController(false);
+        player.GetComponent<My_FPSController>().enabled = false;
         //mute all sounds
         if (speaker.volume > 0) StartCoroutine(volumeDown(speaker, 0f));
         if (waveSound.volume > 0) StartCoroutine(volumeDown(waveSound, 0f));
