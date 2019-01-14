@@ -128,8 +128,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                     Transform grabbableTag = grabbableObject.transform;
                     grabbableObject.Grab(gameObject);
                     pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
-                    //grabbableObject.gameObject.SetActive(false);
-                    StartCoroutine(WaitingLifting(grabbableObject, 1.2f));
+                    StartCoroutine(WaitingLifting(grabbableObject, 1.3f));
                     //Grab(grabbableObject);
                     StartCoroutine(WaitingDroppable(grabbableTag));
                 }
@@ -188,7 +187,9 @@ public class My_FPSInteractionManager : MonoBehaviour
         {
             Debug.Log("No Martello, No Chiodi");
             pb.setGrabbedState(true);
+            StartCoroutine(ShowObj(grabbable, 2));
             grabbable.transform.SetParent(_grabbedObjPosition);
+            grabbable.transform.localPosition = Vector3.zero;
         }
     }
 
@@ -223,8 +224,14 @@ public class My_FPSInteractionManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Grab(grab);
-        grab.transform.localPosition = Vector3.zero;
-        //grab.gameObject.SetActive(true);
+        grab.gameObject.SetActive(false);
+        
+    }
+
+    private IEnumerator ShowObj(Grabbable grab, float time)
+    {
+        yield return new WaitForSeconds(time);
+        grab.gameObject.SetActive(true);
     }
 
     public Transform GetGrabbedObjectTransform()

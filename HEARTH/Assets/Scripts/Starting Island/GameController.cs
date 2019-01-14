@@ -81,19 +81,12 @@ public class GameController : MonoBehaviour {
                     {
                         phase++;
                         playerAnimator.SetTrigger("Wake");
+                        pb.TriggerAnimation((int)PlayerBehaviour.animations.StandUp);
                         tutorialCanvas.SetActive(false);
                         pb.SetKeyboardInput(false);
                         StartCoroutine(timedTutorialText(tutorialCanvas, phase, 11f));
                     }
                 break;
-
-                /*
-                 * VERSIONE CON PHASE 1 GESTITA DAL TIMED TUTORIAL
-            case 1:
-                phase++;
-                pianoSound.Play();
-                break;
-                */
 
             case 1:
                 phase++;
@@ -126,7 +119,7 @@ public class GameController : MonoBehaviour {
         while (t.color.a < 1.0f)
         {
             t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a + (Time.deltaTime / f));
-            if(t.color.a >= 0.7)
+            if(t.color.a >= 0.5)
             {
                 respawnable = true;
             }
@@ -227,9 +220,8 @@ public class GameController : MonoBehaviour {
         {
             phase++;
             player.GetComponent<PlayerBehaviour>().TriggerAnimation((int)PlayerBehaviour.animations.Watch);
-            pb.SetPlayerToActive(true);
+            StartCoroutine(pb.SwitchCameraParentInAnimations(2f));
             menuCanvas.SetActive(false);
-            
             pianoSound.Play();
         }
     }
@@ -315,16 +307,3 @@ public class GameController : MonoBehaviour {
     }
 
 }
-
-
-/* GAME PHASES
- * 
- * - PHASE 0 -
- * the player is fanted on the sand
- * the alarm of his clock is plaing and awake him
- * when the player press E he gets up
- *
- * - PHASE 1 -
- * the player is standing up and has to stop the alarm
- * pressing E he stop the alarm and watch the watch 
- */

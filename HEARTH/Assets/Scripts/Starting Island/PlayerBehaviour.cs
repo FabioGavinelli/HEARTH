@@ -30,6 +30,8 @@ public class PlayerBehaviour : MonoBehaviour {
     private int wakeAnimHash = Animator.StringToHash("Wake");
     private int jumpStateHash = Animator.StringToHash("Base Layer.Jump");
 
+    private Vector3 standardHeadPosition = new Vector3 (-0.001649857f, 1.694621f, 0.2f);
+    private Vector3 runHeadPostion = new Vector3 (-0.0016f, 1.572f, 0.38f);
 
     private void Start()
     {
@@ -44,13 +46,14 @@ public class PlayerBehaviour : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         bool running = Input.GetKey(KeyCode.LeftShift);
-        float speed = ((running) ? 1 : 0.5f);
+        float speed = ((running) ? 1f : 0.5f);
+        Vector3 offset = ((running) ? runHeadPostion : standardHeadPosition);
         bool jumping = Input.GetKeyDown(KeyCode.Space);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        //if (!activePlayer) return;
+        if (!activePlayer) return;
 
-        CameraOffset(headBonePosition);
+        gameplayPosition.localPosition = offset;
 
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
@@ -77,21 +80,6 @@ public class PlayerBehaviour : MonoBehaviour {
             //menuCanvas.setActive(menuState);
             Cursor.visible = menuState;
             TriggerAnimation((int)animations.Watch);
-
-            /*
-            if (menuState)
-            {
-                SetCameraToHead(menuState);
-                DisablePlayerController(!menuState);
-            }
-            else
-            {
-                StartCoroutine(DisablePlayerControlsForTime(2f));
-                StartCoroutine(SetCameraToAnimPosition(1f));
-            }
-                
-            GetComponentInChildren<Animator>().SetBool("Watch", menuState);
-            */
 
         }
 
@@ -128,41 +116,56 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         float animationTime = 0;
         bool onlyDisable = false;
+        bool changeParent = false;
         Vector3 finalHeadPosition;
-
-        SwitchCameraParent(true);
+        Vector3 finalHeadRotation;
 
         switch (animationIndex)
         {
             case (int)animations.Watch:
 
                 animationTime = 2f;
-                finalHeadPosition = ((menuState) ? new Vector3(45f, 0f, 0f) : new Vector3(0f, 0f, 0f));
+                finalHeadRotation = ((menuState) ? new Vector3(45f, 0f, 0f) : new Vector3(0f, 0f, 0f));
 
-                animator.SetBool(watchAnimHash, menuState);
-                fpsCamera.transform.DOLocalRotate(finalHeadPosition, animationTime);
                 onlyDisable = menuState;
+                animator.SetBool(watchAnimHash, menuState);
+                fpsCamera.transform.DOLocalRotate(finalHeadRotation, animationTime);
+                
 
                 break;
 
             case (int)animations.Lift:
 
-                animationTime = 7f;
-                finalHeadPosition = new Vector3(0f, 0f, 0f);
+                animationTime = 5f;
+                finalHeadPosition = new Vector3(-0.03f, -1f, 0.45f);
+                finalHeadRotation = new Vector3(25f, 0f, 0f);
 
                 animator.SetTrigger(liftAnimHash);
-                fpsCamera.transform.DOLocalRotate(finalHeadPosition, animationTime);
+                FPSCharacter.transform.DOPunchPosition(finalHeadPosition, animationTime, 0, 1);
+                FPSCharacter.transform.DOPunchRotation(finalHeadRotation, animationTime, 0 , 1);
+                //fpsCamera.transform.DOLocalRotate(finalHeadPosition, animationTime);
                 onlyDisable = false;
                 
                 break;
+
+            case (int)animations.StandUp:
+
+                animationTime = 11f;
+                changeParent = activePlayer;
+                onlyDisable = true;
+
+                animator.SetTrigger(wakeAnimHash);
+                break;
+
 
             default:
                 break;
         }
 
         
-        StartCoroutine(DisableControlsDuringAnimation(animationTime, false));
-        StartCoroutine(ResetParentAfterAnimation(animationTime));
+        StartCoroutine(DisableControlsDuringAnimation(animationTime, onlyDisable));
+        if(changeParent)
+            StartCoroutine(SwitchCameraParentInAnimations(animationTime));
 
     }
 
@@ -186,32 +189,29 @@ public class PlayerBehaviour : MonoBehaviour {
         
     }
 
-    private IEnumerator ResetParentAfterAnimation(float time)
+    public IEnumerator SwitchCameraParentInAnimations(float time)
     {
+        SetPlayerToActive(false);
+        SetCameraToAnimation(true);
+
         yield return new WaitForSeconds(time);
-        SwitchCameraParent(false);
-    }
 
-
-    private void CameraOffset(Transform headBoneTransform)
-    {
-        gameplayPosition.transform.localPosition = new Vector3(0, headBoneTransform.transform.localPosition.y + 0.00096f, headBoneTransform.transform.position.z - 0.0015f);  
+        SetPlayerToActive(true);
+        SetCameraToAnimation(false);
     }
     
-    private void SwitchCameraParent(bool parentToHead)
+    private void SetCameraToAnimation(bool parentToHead)
     {
         if (parentToHead)
         {
-            Debug.Log("TESTA");
             FPSCharacter.transform.SetParent(animationPosition);
         }
         else
         {
-            Debug.Log("BANDIIIIIT");
             FPSCharacter.transform.SetParent(gameplayPosition);
         }
-            
-            
+
+        FPSCharacter.transform.localPosition = Vector3.zero;
     }
 
 
