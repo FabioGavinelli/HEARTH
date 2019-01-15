@@ -8,7 +8,7 @@ public class TriggerObjOutline : MonoBehaviour {
     {
         if(other.transform.tag == "Player")
         {
-            this.GetComponent<OutlineObject>().OutlineObj(true);
+            this.GetComponent<OutlineObj>().enabled = true;
         }
     }
 
@@ -16,7 +16,7 @@ public class TriggerObjOutline : MonoBehaviour {
     {
         if (other.transform.tag == "Player")
         {
-            this.GetComponent<OutlineObject>().OutlineObj(false);
+            this.GetComponent<OutlineObj>().enabled = false;
         }
     }
 }

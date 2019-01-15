@@ -25,7 +25,7 @@ public class EnteredZone : MonoBehaviour {
             if (script.GetGrabbedObjectTransform() != null) { 
                 if ((script.GetGrabbedObjectTransform().tag == "Oar") || ((script.GetGrabbedObjectTransform().tag == "MetalPlate") && (script.GetOwningHammer()) && (script.GetOwningNails())))
                 {
-                    GetComponentInParent<OutlineObject>().OutlineObj(true);
+                    GetComponentInParent<OutlineObj>().enabled = true;
                 }
             }
         }  
@@ -61,7 +61,7 @@ public class EnteredZone : MonoBehaviour {
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
             script.SetEnteredZone(false);
 
-            GetComponentInParent<OutlineObject>().OutlineObj(false); 
+            GetComponentInParent<OutlineObj>().enabled = false; 
         }
         
 

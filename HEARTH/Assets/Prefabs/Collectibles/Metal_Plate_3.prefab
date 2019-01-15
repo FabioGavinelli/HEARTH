@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4126001527349542}
   - component: {fileID: 33029110430269616}
   - component: {fileID: 23723547107086444}
-  - component: {fileID: 114338467535894840}
+  - component: {fileID: 3548167654422863822}
   - component: {fileID: 65427502789043504}
   - component: {fileID: 6270616249971164957}
   m_Layer: 0
@@ -155,7 +155,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &114338467535894840
+--- !u!114 &3548167654422863822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,12 +164,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1768848794037186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ad1f31ff3744945ad7da6db6e5e64e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b6727f109bbe3f449d758b7e3c50203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materials:
-  - {fileID: 2100000, guid: 3fc0b98498994fd439e8f860044392f7, type: 2}
-  - {fileID: 2100000, guid: f37d42972645bee4da03658a291e01c7, type: 2}
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &65427502789043504
 BoxCollider:
   m_ObjectHideFlags: 0
