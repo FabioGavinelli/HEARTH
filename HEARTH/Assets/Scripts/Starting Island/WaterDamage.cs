@@ -49,7 +49,13 @@ public class WaterDamage : MonoBehaviour {
             StartCoroutine(DamagePlayer());
         }
        
-     }
+    }
+
+    private IEnumerator WaitForHeal()
+    {
+        yield return new WaitForSeconds(4f);
+        if (invicible) StartCoroutine(HealPlayer());
+    }
 
     private IEnumerator HealPlayer()
     {
@@ -66,7 +72,7 @@ public class WaterDamage : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             invicible = true;
-            StartCoroutine(HealPlayer());
+            StartCoroutine(WaitForHeal());
         } 
     }
 }

@@ -65,13 +65,6 @@ public class PlayerBehaviour : MonoBehaviour {
             animator.SetFloat(speedAnimHash, 0f);
         }
 
-        /*
-        if (jumping && stateInfo.fullPathHash != jumpStateHash)
-        {
-            animator.SetTrigger(jumpStateHash);
-        }
-        */
-
         // Open menu
         if (Input.GetKeyDown(KeyCode.Tab) && !grabbed && this.GetComponent<CharacterController>().isGrounded)
         {

@@ -65,8 +65,10 @@ public class GameController : MonoBehaviour {
             player.GetComponent<My_FPSController>().enabled = true;
             gameOverCanvas.SetActive(false);
             //play music
-            waveSound.Play();
-            pianoSound.Play();
+            waveSound.volume = 0;
+            pianoSound.volume = 0;
+            StartCoroutine(volumeUp(waveSound, 0.2f, 2f, true));
+            StartCoroutine(volumeUp(pianoSound, 0.2f, 2f, true));
             //reset step sound
             player.GetComponent<My_FPSController>().SetStepSound(0);
         }
@@ -236,9 +238,9 @@ public class GameController : MonoBehaviour {
         //disable player
         player.GetComponent<My_FPSController>().enabled = false;
         //mute all sounds
-        if (speaker.volume > 0) StartCoroutine(volumeDown(speaker, 0f));
-        if (waveSound.volume > 0) StartCoroutine(volumeDown(waveSound, 0f));
-        if (pianoSound.volume > 0) StartCoroutine(volumeDown(pianoSound, 0f));
+        if (speaker.volume > 0) StartCoroutine(volumeDown(speaker, 0f, 2.5f, true));
+        if (waveSound.volume > 0) StartCoroutine(volumeDown(waveSound, 0f, 2.5f, true));
+        if (pianoSound.volume > 0) StartCoroutine(volumeDown(pianoSound, 0f, 2.5f, true));
         //fade to black
         blackScreenCanvas.SetActive(true);
         StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 3f)); ;
@@ -248,25 +250,31 @@ public class GameController : MonoBehaviour {
         StartCoroutine(StartEndVideo());
     }
 
-    private IEnumerator volumeUp(AudioSource audio, float maxVolume)
+    private IEnumerator volumeUp(AudioSource audio, float maxVolume, float time, bool forceStart)
     {
-        if (maxVolume > 1) yield break;
+        if (maxVolume > 1 && maxVolume <= 0) yield break;
+        if (forceStart) audio.Play();
 
         while (audio.volume < maxVolume)
         {
-            audio.volume += 0.007f;
-            yield return new WaitForSeconds(0.03f);
+            audio.volume += Time.deltaTime / (time / maxVolume);
+            yield return null;
         }
+
+        
     }
 
-    private IEnumerator volumeDown(AudioSource audio, float minVolume)
+    private IEnumerator volumeDown(AudioSource audio, float minVolume, float time, bool forceStop)
     {
-        if (minVolume < 0) yield break;
+        if (minVolume < 0 && minVolume > 1) yield break;
+
         while (audio.volume > minVolume)
         {
-            audio.volume -= 0.007f;
-            yield return new WaitForSeconds(0.03f);
+            audio.volume -= Time.deltaTime / (time);
+            yield return null;
         }
+
+        if (forceStop) audio.Stop();
     }
 
     private IEnumerator FadeOutToBlack(Image t, float time)
