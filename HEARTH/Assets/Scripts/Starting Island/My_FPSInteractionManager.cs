@@ -12,8 +12,6 @@ public class My_FPSInteractionManager : MonoBehaviour
     [SerializeField] private float _pushForce;
     [SerializeField] private float _grabDistance;
     [SerializeField] private Transform _grabbedObjPosition;
-    //[SerializeField] private Transform _leftHand;
-    //[SerializeField] private Transform _rightHand;
     [SerializeField] private GameObject _oar;
 
     private bool _pointingGrabbable;
@@ -148,17 +146,16 @@ public class My_FPSInteractionManager : MonoBehaviour
 
         pb.setGrabbedState(false);
 
-        if (_grabbedObject.transform.tag == "MetalPlate" && enteredShipZone && owningHammer && owningNails) {
-
-            _grabbedObject.gameObject.SetActive(false);
+        if (_grabbedObject.transform.tag == "MetalPlate" && enteredShipZone && owningHammer && owningNails) {            
             repairState++;
             showable = true;
-            StartCoroutine(DisableCollider());
+            _grabbedObject.gameObject.SetActive(false);
+            //StartCoroutine(DisableCollider());
 
         } else if (_grabbedObject.transform.tag == "Oar" && enteredShipZone) {
-            _oar.SetActive(true);
-            _grabbedObject.gameObject.SetActive(false);
             repairState++;
+            _oar.SetActive(true);
+            _grabbedObject.gameObject.SetActive(false);           
             SetGrabbing();
 
         } else {
@@ -171,8 +168,9 @@ public class My_FPSInteractionManager : MonoBehaviour
     private void Grab(Grabbable grabbable)
     {
         _grabbedObject = grabbable;
+        grabbable.GetComponentInChildren<OutlineObj>().enabled = false;
 
-        if(grabbable.transform.tag == "Hammer")
+        if (grabbable.transform.tag == "Hammer")
         {
             owningHammer = true;
             _grabbedObject.gameObject.SetActive(false);
@@ -191,7 +189,10 @@ public class My_FPSInteractionManager : MonoBehaviour
             StartCoroutine(ShowObj(grabbable, 2));
             grabbable.transform.SetParent(_grabbedObjPosition);
             grabbable.transform.localPosition = Vector3.zero;
+            grabbable.transform.localRotation = Quaternion.identity;
         }
+
+        
     }
 
     private void DebugRaycast()
@@ -231,7 +232,7 @@ public class My_FPSInteractionManager : MonoBehaviour
 
     private IEnumerator ShowObj(Grabbable grab, float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time); 
         grab.gameObject.SetActive(true);
     }
 

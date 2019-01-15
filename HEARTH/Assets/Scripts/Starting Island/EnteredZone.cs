@@ -30,30 +30,7 @@ public class EnteredZone : MonoBehaviour {
             }
         }  
     }
-
-   /* private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.GetComponent<My_FPSInteractionManager>() != null)
-        {
-
-            My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
-            script.SetEnteredZone(true);
-
-            if (script.GetGrabbedObjectTransform() != null)
-            {
-                if ((script.GetGrabbedObjectTransform().tag == "Oar") || ((script.GetGrabbedObjectTransform().tag == "MetalPlate") && (script.GetOwningHammer()) && (script.GetOwningNails())))
-                {
-                    GetComponentInParent<OutlineObject>().OutlineObj(true);
-                }
-                else
-                {
-                    GetComponentInParent<OutlineObject>().OutlineObj(false);
-                }
-            }
-        }
-    }
-    */
-
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.GetComponent<My_FPSInteractionManager>() != null)
@@ -61,9 +38,8 @@ public class EnteredZone : MonoBehaviour {
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
             script.SetEnteredZone(false);
 
-            GetComponentInParent<OutlineObj>().enabled = false; 
+            GetComponentInParent<OutlineObj>().enabled = false;
+            this.GetComponent<Collider>().enabled = false;
         }
-        
-
     }
 }
