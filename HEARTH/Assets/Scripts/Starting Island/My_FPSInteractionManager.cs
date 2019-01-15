@@ -63,7 +63,7 @@ public class My_FPSInteractionManager : MonoBehaviour
             CheckInteraction();
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && pb.IsPlayerActive())
         {
             if (_grabbedObject != null && droppable)
             {
@@ -123,7 +123,8 @@ public class My_FPSInteractionManager : MonoBehaviour
    
             if (_pointingGrabbable && _grabbedObject == null)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+               
+                if (Input.GetKeyDown(KeyCode.E) && pb.IsPlayerActive())
                 {
                     Transform grabbableTag = grabbableObject.transform;
                     grabbableObject.Grab(gameObject);

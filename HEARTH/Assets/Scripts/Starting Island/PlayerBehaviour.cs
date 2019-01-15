@@ -51,7 +51,7 @@ public class PlayerBehaviour : MonoBehaviour {
         bool jumping = Input.GetKeyDown(KeyCode.Space);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (!activePlayer) return;
+        if (!activePlayer && !menuState) return;
 
         gameplayPosition.localPosition = offset;
 
@@ -68,19 +68,17 @@ public class PlayerBehaviour : MonoBehaviour {
         /*
         if (jumping && stateInfo.fullPathHash != jumpStateHash)
         {
-            anim.SetTrigger("Jump");
-            Debug.Log("Jumping");
+            animator.SetTrigger(jumpStateHash);
         }
         */
 
         // Open menu
-        if (Input.GetKeyDown(KeyCode.Tab) && stateInfo.fullPathHash != jumpStateHash && IsKeyboardActive())
+        if (Input.GetKeyDown(KeyCode.Tab) && !grabbed && this.GetComponent<CharacterController>().isGrounded)
         {
             menuState = !menuState;
             //menuCanvas.setActive(menuState);
             Cursor.visible = menuState;
             TriggerAnimation((int)animations.Watch);
-
         }
 
     }
@@ -123,37 +121,27 @@ public class PlayerBehaviour : MonoBehaviour {
         switch (animationIndex)
         {
             case (int)animations.Watch:
-
                 animationTime = 2f;
                 finalHeadRotation = ((menuState) ? new Vector3(45f, 0f, 0f) : new Vector3(0f, 0f, 0f));
-
                 onlyDisable = menuState;
                 animator.SetBool(watchAnimHash, menuState);
                 fpsCamera.transform.DOLocalRotate(finalHeadRotation, animationTime);
-                
-
                 break;
 
             case (int)animations.Lift:
-
                 animationTime = 5f;
                 finalHeadPosition = new Vector3(-0.03f, -1f, 0.45f);
                 finalHeadRotation = new Vector3(25f, 0f, 0f);
-
+                onlyDisable = false;
                 animator.SetTrigger(liftAnimHash);
                 FPSCharacter.transform.DOPunchPosition(finalHeadPosition, animationTime, 0, 1);
-                FPSCharacter.transform.DOPunchRotation(finalHeadRotation, animationTime, 0 , 1);
-                //fpsCamera.transform.DOLocalRotate(finalHeadPosition, animationTime);
-                onlyDisable = false;
-                
+                FPSCharacter.transform.DOPunchRotation(finalHeadRotation, animationTime, 0 , 1); 
                 break;
 
             case (int)animations.StandUp:
-
                 animationTime = 11f;
                 changeParent = activePlayer;
                 onlyDisable = true;
-
                 animator.SetTrigger(wakeAnimHash);
                 break;
 
@@ -161,23 +149,23 @@ public class PlayerBehaviour : MonoBehaviour {
             default:
                 break;
         }
-
         
         StartCoroutine(DisableControlsDuringAnimation(animationTime, onlyDisable));
         if(changeParent)
             StartCoroutine(SwitchCameraParentInAnimations(animationTime));
-
     }
 
     private void SetPlayerControls(bool state)
     {
         this.GetComponent<My_FPSController>().enabled = state;
         this.GetComponent<CharacterController>().enabled = state;
+        SetPlayerToActive(state);
     }
 
     private IEnumerator DisableControlsDuringAnimation(float time, bool onlyDisable)
     {
         SetPlayerControls(false);
+       
 
         if (!onlyDisable)
         {
@@ -213,7 +201,6 @@ public class PlayerBehaviour : MonoBehaviour {
 
         FPSCharacter.transform.localPosition = Vector3.zero;
     }
-
 
     /* ---- CONTROLS FUNCTIONS ---- */
 
