@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnteredZone : MonoBehaviour {
 
+    private bool sameObj = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,16 +19,23 @@ public class EnteredZone : MonoBehaviour {
     {
         if (other.transform.GetComponent<My_FPSInteractionManager>() != null)
         {
-
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
-            script.SetEnteredZone(true);
 
-            if (script.GetGrabbedObjectTransform() != null) { 
-                if ((script.GetGrabbedObjectTransform().tag == "Oar") || ((script.GetGrabbedObjectTransform().tag == "MetalPlate") && (script.GetOwningHammer()) && (script.GetOwningNails())))
-                {
+            if(script.GetGrabbedObjectTransform() != null && script.GetGrabbedObjectTransform().tag == this.gameObject.tag)
+            {
+                sameObj = true;
+                script.SetEnteredZone(true);
+
+               if ((script.GetGrabbedObjectTransform().tag == "Oar") || ((script.GetGrabbedObjectTransform().tag == "MetalPlate") && (script.GetOwningHammer()) && (script.GetOwningNails())))
+               {
                     GetComponentInParent<OutlineObj>().enabled = true;
-                }
+               }
+                
             }
+            else{
+                sameObj = false;
+            }
+            
         }  
     }
     
@@ -38,8 +46,26 @@ public class EnteredZone : MonoBehaviour {
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
             script.SetEnteredZone(false);
 
+            /*if(sameObj == true)
+            {
+                GetComponentInParent<OutlineObj>().enabled = false;
+                this.GetComponent<Collider>().enabled = false;
+            }*/
             GetComponentInParent<OutlineObj>().enabled = false;
-            this.GetComponent<Collider>().enabled = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.GetComponent<My_FPSInteractionManager>() != null)
+        {
+            My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
+
+            if (script.GetGrabbedObjectTransform() == null && GetComponentInParent<OutlineObj>().enabled == true)
+            {
+                GetComponentInParent<OutlineObj>().enabled = false;
+                this.GetComponent<Collider>().enabled = false;
+            }
         }
     }
 }
