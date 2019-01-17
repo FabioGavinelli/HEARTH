@@ -46,12 +46,11 @@ public class EnteredZone : MonoBehaviour {
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
             script.SetEnteredZone(false);
 
-            /*if(sameObj == true)
+            if(sameObj == true)
             {
                 GetComponentInParent<OutlineObj>().enabled = false;
-                this.GetComponent<Collider>().enabled = false;
-            }*/
-            GetComponentInParent<OutlineObj>().enabled = false;
+                //this.GetComponent<Collider>().enabled = false;
+            }
         }
     }
 
@@ -61,10 +60,11 @@ public class EnteredZone : MonoBehaviour {
         {
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
 
-            if (script.GetGrabbedObjectTransform() == null && GetComponentInParent<OutlineObj>().enabled == true)
+            if (script.GetGrabbedObjectTransform() == null && GetComponentInParent<OutlineObj>().enabled == true && sameObj)
             {
                 GetComponentInParent<OutlineObj>().enabled = false;
                 this.GetComponent<Collider>().enabled = false;
+                sameObj = false;
             }
         }
     }

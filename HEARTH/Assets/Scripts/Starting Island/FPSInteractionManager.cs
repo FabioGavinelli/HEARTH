@@ -159,7 +159,6 @@ public class FPSInteractionManager : MonoBehaviour
 
     private void Drop()
     {
-        Debug.Log(enteredShipZone);
         if (_grabbedObject == null)
             return;
 

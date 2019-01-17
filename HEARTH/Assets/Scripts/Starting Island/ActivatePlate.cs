@@ -23,19 +23,13 @@ public class ActivatePlate : MonoBehaviour {
             My_FPSInteractionManager script = other.transform.GetComponent<My_FPSInteractionManager>();
             if (script.GetGrabbedObjectTransform() != null)
             {
-                //Debug.Log("collided with " + other.name);
 
                 Transform grabbed = script.GetGrabbedObjectTransform();
-                //Debug.Log("grabbed object : " + grabbed.name);
                 showObject = script.GetShowable();
-                Debug.Log(showObject);
 
                 if (grabbed.tag == "MetalPlate" && showObject)
                 {
-                    Debug.Log("showing");
                     this.transform.GetChild(0).gameObject.SetActive(true);
-                    //this.transform.GetComponentInChildren<Transform>(true).gameObject.SetActive(true);
-                    Debug.Log(this.transform.name);
                     script.SetShowable(false);
                     script.SetGrabbing();
                 }

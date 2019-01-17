@@ -184,7 +184,6 @@ public class My_FPSInteractionManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Martello, No Chiodi");
             pb.setGrabbedState(true);
             StartCoroutine(ShowObj(grabbable, 2));
             grabbable.transform.SetParent(_grabbedObjPosition);
