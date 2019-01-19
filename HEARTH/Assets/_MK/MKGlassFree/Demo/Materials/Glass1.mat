@@ -89,7 +89,7 @@ Material:
     - _MKEditorShowRimBehavior: 1
     - _MKEditorShowSpecularBehavior: 1
     - _MKEditorShowTranslucentBehavior: 0
-    - _MainTint: 0
+    - _MainTint: 2
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
