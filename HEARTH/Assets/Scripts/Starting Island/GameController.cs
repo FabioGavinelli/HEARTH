@@ -244,7 +244,7 @@ public class GameController : MonoBehaviour {
         if (pianoSound.volume > 0) StartCoroutine(volumeDown(pianoSound, 0f, 2.5f, true));
         //fade to black
         blackScreenCanvas.SetActive(true);
-        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 3f)); ;
+        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 5f)); ;
 
         //start video
         this.GetComponent<VideoPlayer>().clip = endLevelVideo;
@@ -281,7 +281,8 @@ public class GameController : MonoBehaviour {
         t.color = new Color(t.color.r, t.color.g, t.color.b, 0);
         while (t.color.a < 1.0f)
         {
-            t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a + (Time.deltaTime / time));
+            t.color = new Color(t.color.r, t.color.g, t.color.b, Mathf.Clamp(t.color.a + (Time.deltaTime * (1 / time)), 0f, 1f));
+            Debug.Log("Fade out to black, alpha: " + t.color.a);
             yield return null;
         }
     }
@@ -291,24 +292,26 @@ public class GameController : MonoBehaviour {
         t.color = new Color(t.color.r, t.color.g, t.color.b, 1);
         while (t.color.a > 0f)
         {
-            t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a - (Time.deltaTime / time));
+            
+            t.color = new Color(t.color.r, t.color.g, t.color.b, Mathf.Clamp(t.color.a - (Time.deltaTime * (1/time)), 0f, 1f));
+            Debug.Log("Fade in to black, alpha: " + t.color.a);
             yield return null;
         }
     }
 
     private IEnumerator StartEndVideo()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         speaker.volume = 0.5f;
         this.GetComponent<VideoPlayer>().Play();
-        StartCoroutine(FadeInByBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 4f));
+        StartCoroutine(FadeInByBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 10f));
         //blackScreenCanvas.SetActive(false);
         StartCoroutine(LoadNewSceneAfterVideo());
     }
 
     private IEnumerator LoadNewSceneAfterVideo()
     {
-        yield return new WaitForSeconds(13f);
+        yield return new WaitForSeconds(40f);
         SceneManager.LoadScene(2);
     }
 
