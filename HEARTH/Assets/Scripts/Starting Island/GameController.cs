@@ -224,6 +224,7 @@ public class GameController : MonoBehaviour {
             player.GetComponent<PlayerBehaviour>().TriggerAnimation((int)PlayerBehaviour.animations.Watch);
             StartCoroutine(pb.SwitchCameraParentInAnimations(2f));
             menuCanvas.SetActive(false);
+            menuCanvas.GetComponent<MainMenuManager>().DisableTicketReminder();
             pianoSound.Play();
         }
     }
@@ -260,8 +261,6 @@ public class GameController : MonoBehaviour {
             audio.volume += Time.deltaTime / (time / maxVolume);
             yield return null;
         }
-
-        
     }
 
     private IEnumerator volumeDown(AudioSource audio, float minVolume, float time, bool forceStop)
@@ -285,7 +284,6 @@ public class GameController : MonoBehaviour {
             t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a + (Time.deltaTime / time));
             yield return null;
         }
-        
     }
 
     private IEnumerator FadeInByBlack(Image t, float time)
@@ -296,7 +294,6 @@ public class GameController : MonoBehaviour {
             t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a - (Time.deltaTime / time));
             yield return null;
         }
-
     }
 
     private IEnumerator StartEndVideo()
@@ -304,6 +301,7 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(5f);
         speaker.volume = 0.5f;
         this.GetComponent<VideoPlayer>().Play();
+        StartCoroutine(FadeInByBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 4f));
         //blackScreenCanvas.SetActive(false);
         StartCoroutine(LoadNewSceneAfterVideo());
     }

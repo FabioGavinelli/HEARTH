@@ -9,6 +9,7 @@ public class InventoryHandler : MonoBehaviour {
     public GameObject screwers;
     public ItemSlot slot0;
     public ItemSlot slot1;
+    public My_FPSInteractionManager my_fpsInter;
 
 	// Use this for initialization
 	void Start () {
@@ -18,16 +19,13 @@ public class InventoryHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown("m"))
-        {
-            print("preso il martello");
-            AddToInventory(hammer);
-   
+        if (my_fpsInter.GetOwningHammer() == true)
+        { 
+            AddToInventory(hammer);  
         }
 
-        if (Input.GetKeyDown("c"))
+        if (my_fpsInter.GetOwningNails() == true)
         {
-            print("presi i chiodi");
             AddToInventory(screwers);
         }
 
@@ -37,7 +35,8 @@ public class InventoryHandler : MonoBehaviour {
     {
         if (slot0.GetComponent<Image>().enabled == false)
             slot0.UpdateSprite(obj);
-        else slot1.UpdateSprite(obj);
+        else
+            slot1.UpdateSprite(obj);
     }
 
   

@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private bool menuState = false;
     private bool grabbed = false;
+    public GameObject menuCanvas;
 
     private bool keyboardInput = true;
     private bool activePlayer = false;
@@ -69,7 +70,7 @@ public class PlayerBehaviour : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Tab) && !grabbed && this.GetComponent<CharacterController>().isGrounded)
         {
             menuState = !menuState;
-            //menuCanvas.setActive(menuState);
+            menuCanvas.SetActive(menuState);
             Cursor.visible = menuState;
             TriggerAnimation((int)animations.Watch);
         }
