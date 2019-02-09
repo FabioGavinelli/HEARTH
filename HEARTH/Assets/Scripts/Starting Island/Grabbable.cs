@@ -40,7 +40,7 @@ public class Grabbable : MonoBehaviour
     {
         _rigidbody.isKinematic = false;
         _rigidbody.useGravity = true;
-        _rigidbody.AddForce(Vector3.forward *100 , ForceMode.Impulse);
+        _rigidbody.AddForce(Vector3.forward * 50, ForceMode.Impulse);
         StartCoroutine(WaitEnableCollider());
         //_collider.enabled = true;
     }
