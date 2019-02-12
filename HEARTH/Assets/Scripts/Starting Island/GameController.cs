@@ -13,8 +13,10 @@ public class GameController : MonoBehaviour {
     [SerializeField] private GameObject wakeUpPPEffect;
     [SerializeField] private GameObject damagePPEffect;
     [SerializeField] private AudioClip alarmClock;
+    [SerializeField] private AudioClip [] voices;
     [SerializeField] private AudioSource waveSound;
     [SerializeField] private AudioSource pianoSound;
+    [SerializeField] private AudioSource consciousnessSound;
     [SerializeField] private VideoClip endLevelVideo;
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject tutorialCanvas;
@@ -24,8 +26,8 @@ public class GameController : MonoBehaviour {
     private Animator playerAnimator;
     private bool ended = false;
 
-    private string[] tutorialMessages = {"PREMI IL TASTO AZIONE [E] PER ALZARTI",
-                                         "PREMI IL TASTO AZIONE [E] PER SPEGNERE LA SVEGLIA" };
+    private string[] tutorialMessages = {"PRESS [E] TO STAND UP",
+                                         "PRESS [E] TO TURN OFF THE ALARM" };
 
     private AudioSource speaker;
     private Text tutorialText;
@@ -87,6 +89,8 @@ public class GameController : MonoBehaviour {
                         tutorialCanvas.SetActive(false);
                         pb.SetKeyboardInput(false);
                         StartCoroutine(timedTutorialText(tutorialCanvas, phase, 11f));
+                        consciousnessSound.clip = voices[0];
+                        consciousnessSound.Play();
                     }
                 break;
 
@@ -96,6 +100,8 @@ public class GameController : MonoBehaviour {
                 tutorialCanvas.SetActive(false);
                 playerAnimator.SetBool("Watch", true);
                 StartCoroutine(ShowMenuCanvas());
+                consciousnessSound.clip = voices[1];
+                consciousnessSound.Play();
             break;
 
              /*
