@@ -13,6 +13,8 @@ public class My_FPSInteractionManager : MonoBehaviour
     [SerializeField] private float _grabDistance;
     [SerializeField] private Transform _grabbedObjPosition;
     [SerializeField] private GameObject _oar;
+    [SerializeField] private AudioClip[] boatCompletionSteps;
+    [SerializeField] private AudioSource audioS;
 
     private bool _pointingGrabbable;
     private bool _pointingOutlinable;
@@ -151,6 +153,16 @@ public class My_FPSInteractionManager : MonoBehaviour
             showable = true;
             _grabbedObject.gameObject.SetActive(false);
             //StartCoroutine(DisableCollider());
+            if(repairState == 3 && _oar.activeSelf)
+            {
+                audioS.clip = boatCompletionSteps[1];
+                audioS.Play();
+            }
+            if (repairState == 3 && !(_oar.activeSelf))
+            {
+                audioS.clip = boatCompletionSteps[2];
+                audioS.Play();
+            }
 
         } else if (_grabbedObject.transform.tag == "Oar" && enteredShipZone) {
             repairState++;
@@ -159,6 +171,11 @@ public class My_FPSInteractionManager : MonoBehaviour
             SetGrabbing();
 
         } else {
+            if (enteredShipZone)
+            {
+                audioS.clip = boatCompletionSteps[0];
+                audioS.Play();
+            }
             _grabbedObject.transform.parent = _grabbedObject.OriginalParent;
             _grabbedObject.Drop();
             SetGrabbing();
