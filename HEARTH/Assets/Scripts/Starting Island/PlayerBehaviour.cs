@@ -21,7 +21,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public GameObject menuCanvas;
 
     private bool keyboardInput = true;
-    private bool activePlayer = false;
+    private bool activePlayer = true;
 
     public enum animations { Watch, Lift, Walk, Run, Jump, StandUp};
     private int watchAnimHash = Animator.StringToHash("Watch");
@@ -40,6 +40,7 @@ public class PlayerBehaviour : MonoBehaviour {
         fpsCamera = Camera.main;
         animator = GetComponentInChildren<Animator>();
         mouseLook = this.GetComponent<My_FPSController>().getMouseLook();
+        //Se sono su prima isola metto activePlayer a false all'inizio
     }
 
     private void Update()
@@ -59,6 +60,7 @@ public class PlayerBehaviour : MonoBehaviour {
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
         {
+            Debug.Log("moving");
             animator.SetFloat(speedAnimHash, speed);
         }
         else
@@ -182,7 +184,7 @@ public class PlayerBehaviour : MonoBehaviour {
         SetCameraToAnimation(false);
     }
     
-    private void SetCameraToAnimation(bool parentToHead)
+    public void SetCameraToAnimation(bool parentToHead)
     {
         if (parentToHead)
         {

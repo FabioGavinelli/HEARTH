@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotTrigger : MonoBehaviour
+public class ActivateRobotLight : MonoBehaviour
 {
-
-    public GameObject robot;
+    [SerializeField] private Light robotLight;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Player")
         {
-            robot.SetActive(true);
+            robotLight.enabled = true;
+            Debug.Log("lumos!");
             this.enabled = false;
         }
     }

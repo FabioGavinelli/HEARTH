@@ -210,7 +210,10 @@ public class GameController : MonoBehaviour {
     {
         //Disable character controller
         player.GetComponent<My_FPSController>().enabled = false;
-
+        //Set player to sleep 
+        playerAnimator.SetTrigger("Sleep");
+        player.GetComponent<PlayerBehaviour>().SetCameraToAnimation(true);
+        player.GetComponent<PlayerBehaviour>().SetPlayerToActive(false);
         //alarm clock sound setup
         speaker.clip = alarmClock;
         speaker.Play();

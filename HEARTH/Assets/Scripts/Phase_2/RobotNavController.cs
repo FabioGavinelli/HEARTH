@@ -12,7 +12,7 @@ public class RobotNavController : MonoBehaviour {
 
     private NavMeshAgent navMeshAgent;
     private bool following = true;
-
+    private bool reached = false;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class RobotNavController : MonoBehaviour {
             navMeshAgent.SetDestination(target.transform.position);
             
             //se ha raggiunto il target lo fa scomparire TOFIX
-            if (TargetReached())
+            if (reached)
             {
                 //GAMEOVER TODO
                 Debug.Log("GAMEOVER");
@@ -38,7 +38,7 @@ public class RobotNavController : MonoBehaviour {
     }
 
     //restituisce true se il target è raggiunto 
-    private bool TargetReached()
+    /*private bool TargetReached()
     {
         if (!navMeshAgent.pathPending)
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
@@ -46,6 +46,14 @@ public class RobotNavController : MonoBehaviour {
                     return true;
 
         return false;
+    }*/
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            reached = true;
+        }
     }
 
 }

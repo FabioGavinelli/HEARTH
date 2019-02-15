@@ -56,8 +56,7 @@ Transform:
   m_LocalRotation: {x: -0.027784053, y: -0.9953193, z: -0.08840703, w: -0.02741915}
   m_LocalPosition: {x: 0.00013000415, y: 0.00096000335, z: -0.0015100039}
   m_LocalScale: {x: 0.0100000175, y: 0.010000012, z: 0.010000012}
-  m_Children:
-  - {fileID: 7374666956491618203}
+  m_Children: []
   m_Father: {fileID: 8008277379865902663}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87,7 +86,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0016498566, y: 1.6946213, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7374666956491618203}
   m_Father: {fileID: 8008277379865902689}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -396,6 +396,8 @@ MonoBehaviour:
   _grabDistance: 1
   _grabbedObjPosition: {fileID: 3156523873206675001}
   _oar: {fileID: 0}
+  boatCompletionSteps: []
+  audioS: {fileID: 0}
   repairState: 0
 --- !u!114 &7374666956491320250
 MonoBehaviour:
@@ -414,6 +416,7 @@ MonoBehaviour:
   gameplayPosition: {fileID: 3156523873977428886}
   animationPosition: {fileID: 3156523873377525298}
   lifePoints: 0
+  menuCanvas: {fileID: 0}
 --- !u!1 &7374666956491320251
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,11 +444,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7374666956491320251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.000000029802315, y: 0.000000007450579, z: -0.000000011175868,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.007971004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3156523873377525298}
+  m_Father: {fileID: 3156523873977428886}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7374666956490074521
