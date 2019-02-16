@@ -5,16 +5,31 @@ using UnityEngine;
 public class RobotTrigger : MonoBehaviour
 {
 
-    public GameObject robot;
+    [SerializeField] private GameObject robot;
+    [SerializeField] private Light robotLight;
+    [SerializeField] private GameObject rightEye;
+    [SerializeField] private GameObject leftEye;
+
+
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Player")
         {
             //robot.SetActive(true);
-            StartCoroutine(StartFollowPLayer());
+            StartCoroutine(bootRobot());
             this.enabled = false;
         }
+    }
+
+    private IEnumerator bootRobot()
+    {
+        robotLight.enabled = true;
+        rightEye.SetActive(true);
+        leftEye.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        robot.GetComponent<AudioSource>().Play();
+        StartCoroutine(StartFollowPLayer());
     }
 
     private IEnumerator StartFollowPLayer()

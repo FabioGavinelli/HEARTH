@@ -313,14 +313,14 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(10f);
         speaker.volume = 0.5f;
         this.GetComponent<VideoPlayer>().Play();
-        StartCoroutine(FadeInByBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 10f));
+        //StartCoroutine(FadeInByBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 10f));
         //blackScreenCanvas.SetActive(false);
         StartCoroutine(LoadNewSceneAfterVideo());
     }
 
     private IEnumerator LoadNewSceneAfterVideo()
     {
-        yield return new WaitForSeconds(40f);
+        yield return new WaitForSeconds(11f);
         SceneManager.LoadScene(2);
     }
 

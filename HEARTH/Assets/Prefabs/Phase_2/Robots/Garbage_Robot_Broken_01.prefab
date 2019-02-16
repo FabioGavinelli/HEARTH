@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 2127021992565083797}
   - component: {fileID: 2127021992576738197}
   - component: {fileID: 2127021992567345236}
+  - component: {fileID: 1639054281146508864}
   m_Layer: 0
   m_Name: Garbage_Robot_Broken_01
   m_TagString: Untagged
@@ -301,6 +302,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.96
   m_Center: {x: 0.074394345, y: -0.47328553, z: 0.015694845}
+--- !u!114 &1639054281146508864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127021992567345237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05bd39309e0595e4889df29c2575881e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 7149449268980341903}
+  rightEye: {fileID: 747231467}
+  leftEye: {fileID: 66161109}
+  flickFrequency: 0.07
+  maxIntensityValue: 0.9
 --- !u!1 &7149449268980341898
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +329,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7149449268980341897}
   - component: {fileID: 7149449268980341903}
-  - component: {fileID: 7149449268980341896}
   m_Layer: 0
   m_Name: Eye Light
   m_TagString: Untagged
@@ -371,16 +388,3 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &7149449268980341896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7149449268980341898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bd39309e0595e4889df29c2575881e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  light: {fileID: 7149449268980341903}
