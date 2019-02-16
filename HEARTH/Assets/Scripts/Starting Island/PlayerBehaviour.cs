@@ -60,7 +60,6 @@ public class PlayerBehaviour : MonoBehaviour {
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
         {
-            Debug.Log("moving");
             animator.SetFloat(speedAnimHash, speed);
         }
         else
