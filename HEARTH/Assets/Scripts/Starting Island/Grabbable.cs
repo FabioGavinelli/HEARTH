@@ -38,16 +38,18 @@ public class Grabbable : MonoBehaviour
 
     public void Drop()
     {
+        this.GetComponentInChildren<OutlineObj>().enabled = false;
         _rigidbody.isKinematic = false;
         _rigidbody.useGravity = true;
-        _rigidbody.AddRelativeForce(Vector3.right * 50, ForceMode.Impulse);
+        _rigidbody.AddRelativeForce(Vector3.right * 30, ForceMode.Impulse);
         StartCoroutine(WaitEnableCollider());
+       
         //_collider.enabled = true;
     }
 
     public IEnumerator WaitEnableCollider()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         _collider.enabled = true;
     }
 }
