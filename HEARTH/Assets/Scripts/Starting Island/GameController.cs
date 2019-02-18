@@ -222,7 +222,7 @@ public class GameController : MonoBehaviour {
         eye = wakeUpPPEffect.GetComponent<PostProcessVolume>();
         eye.weight = 1;
         //text setup
-        tutorialText.text = "PREMI IL TASTO AZIONE [E] PER ALZARTI";
+        tutorialText.text = tutorialMessages[phase];
     }
 
     public void QuitFromTicket()

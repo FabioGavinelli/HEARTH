@@ -49,23 +49,25 @@ public class PlayerBehaviour : MonoBehaviour {
         float moveVertical = Input.GetAxis("Vertical");
         bool running = Input.GetKey(KeyCode.LeftShift);
         float speed = ((running) ? 1f : 0.5f);
-        Vector3 offset = ((running) ? runHeadPostion : standardHeadPosition);
+        Vector3 offset = standardHeadPosition; /* = ((running) ? runHeadPostion : standardHeadPosition);*/
         bool jumping = Input.GetKeyDown(KeyCode.Space);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (!activePlayer && !menuState) return;
 
-        gameplayPosition.localPosition = offset;
-
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
         {
+            offset = ((running) ? runHeadPostion : standardHeadPosition);
             animator.SetFloat(speedAnimHash, speed);
         }
         else
         {
+            offset = standardHeadPosition;
             animator.SetFloat(speedAnimHash, 0f);
         }
+
+        gameplayPosition.localPosition = offset;
 
         // Open menu
         if (Input.GetKeyDown(KeyCode.Tab) && !grabbed && this.GetComponent<CharacterController>().isGrounded)
