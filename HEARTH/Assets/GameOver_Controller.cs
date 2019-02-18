@@ -7,9 +7,8 @@ using UnityEngine;
 public class GameOver_Controller : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject damagePPEffect;
     [SerializeField] private GameObject gameOverCanvas;
-    [SerializeField] private AudioSource[] GameSounds;
+    [SerializeField] private GameObject audioController;
     private bool respawnable = false;
     private Vector3 respawnLocation;
 
@@ -19,17 +18,20 @@ public class GameOver_Controller : MonoBehaviour
         respawnLocation = player.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void Respawn()
     {
-        //RESPAWN
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")) && respawnable == true)
+        if (respawnable == true)
         {
             //respawn player
             respawnable = false;
             player.GetComponent<My_FPSController>().enabled = true;
             gameOverCanvas.SetActive(false);
             //play music
+            audioController.GetComponent<Sound_Controller>().SetVolume(0, 0);
+            audioController.GetComponent<Sound_Controller>().SetVolume(1, 0);
+            StartCoroutine(audioController.GetComponent<Sound_Controller>().volumeUp(0, 0.2f, 2f, true)); //0 = wave
+            StartCoroutine(audioController.GetComponent<Sound_Controller>().volumeUp(1, 0.2f, 2f, true)); //1 = piano
             //waveSound.volume = 0;
             //pianoSound.volume = 0;
             //StartCoroutine(volumeUp(waveSound, 0.2f, 2f, true));
@@ -57,14 +59,15 @@ public class GameOver_Controller : MonoBehaviour
     public void GameOver()
     {
         respawnable = false;
-        damagePPEffect.GetComponent<PostProcessVolume>().weight = 0;
         player.GetComponent<PlayerBehaviour>().setLifePoints(100f);
         player.transform.position = respawnLocation;
         player.GetComponent<My_FPSController>().enabled = false;
         gameOverCanvas.SetActive(true);
         StartCoroutine(FadeTextToFullAlpha(10f, gameOverCanvas.transform.GetChild(1).gameObject.GetComponent<Text>()));
         //stop music
-        //waveSound.Stop();
-        //pianoSound.Stop();
+        for (int i = 0; i < audioController.GetComponent<Sound_Controller>().getAudioSourceLenght(); i++)
+        {
+            audioController.GetComponent<Sound_Controller>().StopAudioSource(i);
+        }
     }
 }

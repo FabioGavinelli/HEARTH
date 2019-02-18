@@ -7,7 +7,7 @@ public class WaterDamage : MonoBehaviour {
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject damagePPEffect;
-    [SerializeField] private GameObject gameController;
+    [SerializeField] private GameObject gameOverController;
     [SerializeField] private float damage;
     [SerializeField] private float heal;
     [SerializeField] private float damageDelay;
@@ -35,7 +35,8 @@ public class WaterDamage : MonoBehaviour {
         invicible = true;
         if (player.GetComponent<PlayerBehaviour>().getLifePoints() <= 0)
         {
-            gameController.GetComponent<GameController>().GameOver();
+            damagePPEffect.GetComponent<PostProcessVolume>().weight = 0;
+            gameOverController.GetComponent<GameOver_Controller>().GameOver();
         }
     }
 

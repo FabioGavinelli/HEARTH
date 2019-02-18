@@ -9,13 +9,19 @@ public class RobotNavController : MonoBehaviour {
 
     
     [SerializeField] public GameObject target;
+    [SerializeField] private GameObject gameoverController;
+    [SerializeField] private GameObject rightEye;
+    [SerializeField] private GameObject leftEye;
+    [SerializeField] private GameObject trigger;
 
+    private Vector3 robotStartingPosition;
     private NavMeshAgent navMeshAgent;
     private bool following = true;
     private bool reached = false;
 
     void Start()
     {
+        robotStartingPosition = this.transform.position;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -32,6 +38,11 @@ public class RobotNavController : MonoBehaviour {
             {
                 //GAMEOVER TODO
                 Debug.Log("GAMEOVER");
+                reached = false;
+                this.transform.gameObject.SetActive(false);
+                gameoverController.GetComponent<GameOver_Controller>().GameOver();
+                
+                //resetRobot();
             }
         }
 
@@ -54,6 +65,17 @@ public class RobotNavController : MonoBehaviour {
         {
             reached = true;
         }
+    }
+
+    private void resetRobot()
+    {
+        this.transform.position = robotStartingPosition;
+        this.GetComponentInChildren<Light>().enabled = false;
+        rightEye.SetActive(false);
+        leftEye.SetActive(false);
+        trigger.SetActive(true);
+        this.GetComponent<AudioSource>().Stop();
+        this.GetComponent<RobotNavController>().enabled = false;
     }
 
 }

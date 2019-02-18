@@ -7,18 +7,17 @@ using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject wakeUpPPEffect;
-    [SerializeField] private GameObject damagePPEffect;
     [SerializeField] private AudioClip alarmClock;
-    [SerializeField] private AudioClip [] voices;
+    [SerializeField] private AudioClip[] voices;
     [SerializeField] private AudioSource waveSound;
     [SerializeField] private AudioSource pianoSound;
     [SerializeField] private AudioSource consciousnessSound;
     [SerializeField] private VideoClip endLevelVideo;
-    [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private GameObject blackScreenCanvas;
     [SerializeField] private GameObject menuCanvas;
@@ -32,12 +31,11 @@ public class GameController : MonoBehaviour {
     private AudioSource speaker;
     private Text tutorialText;
 
-
     public int phase;
 
-    private bool respawnable = false;
-    private Vector3 respawnLocation;
-    
+    [SerializeField] private GameObject gameoverController;
+    [SerializeField] private GameObject audioController;
+
     private PostProcessVolume eye;
     private bool awake = false;
 
@@ -45,9 +43,9 @@ public class GameController : MonoBehaviour {
     private void Start()
     {
         //Cursor.visible = false;
-        
+
         //Set Up Variables
-        respawnLocation = player.transform.position;
+        //respawnLocation = player.transform.position;
         speaker = GetComponent<AudioSource>();
         tutorialText = tutorialCanvas.GetComponentInChildren<Text>();
         pb = player.GetComponent<PlayerBehaviour>();
@@ -60,20 +58,11 @@ public class GameController : MonoBehaviour {
     {
 
         //RESPAWN
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")) && respawnable == true)
+        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")))
         {
-            //respawn player
-            respawnable = false;
-            player.GetComponent<My_FPSController>().enabled = true;
-            gameOverCanvas.SetActive(false);
-            //play music
-            waveSound.volume = 0;
-            pianoSound.volume = 0;
-            StartCoroutine(volumeUp(waveSound, 0.2f, 2f, true));
-            StartCoroutine(volumeUp(pianoSound, 0.2f, 2f, true));
-            //reset step sound
-            player.GetComponent<My_FPSController>().SetStepSound(0);
+            gameoverController.GetComponent<GameOver_Controller>().Respawn();
         }
+
 
         //GAME EVENTS
         if (Input.GetKeyDown(KeyCode.E) && pb.IsKeyboardActive() == true)
@@ -92,22 +81,22 @@ public class GameController : MonoBehaviour {
                         consciousnessSound.clip = voices[0];
                         consciousnessSound.Play();
                     }
-                break;
+                    break;
 
-            case 1:
-                phase++;
-                speaker.Stop();
-                tutorialCanvas.SetActive(false);
-                playerAnimator.SetBool("Watch", true);
-                StartCoroutine(ShowMenuCanvas());
-                consciousnessSound.clip = voices[1];
-                consciousnessSound.Play();
-            break;
+                case 1:
+                    phase++;
+                    speaker.Stop();
+                    tutorialCanvas.SetActive(false);
+                    playerAnimator.SetBool("Watch", true);
+                    StartCoroutine(ShowMenuCanvas());
+                    consciousnessSound.clip = voices[1];
+                    consciousnessSound.Play();
+                    break;
 
-             /*
-              *  Phase 2 gestita da chiusura biglietto
-              */
-            
+                /*
+                 *  Phase 2 gestita da chiusura biglietto
+                 */
+
                 default:
                     break;
 
@@ -121,41 +110,18 @@ public class GameController : MonoBehaviour {
     }
 
     /* ---- GAMEOVER FUNCTIONS ---- */
-    public IEnumerator FadeTextToFullAlpha(float f, Text t)
-    {
-        t.color = new Color(t.color.r, t.color.g, t.color.b, 0);
-        while (t.color.a < 1.0f)
-        {
-            t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a + (Time.deltaTime / f));
-            if(t.color.a >= 0.5)
-            {
-                respawnable = true;
-            }
-            yield return null;
-        }
-    }
-
     public void GameOver()
     {
-        respawnable = false;
-        damagePPEffect.GetComponent<PostProcessVolume>().weight = 0;
-        player.GetComponent<PlayerBehaviour>().setLifePoints(100f);
-        player.transform.position = respawnLocation;
-        player.GetComponent<My_FPSController>().enabled = false;
-        gameOverCanvas.SetActive(true);
-        StartCoroutine(FadeTextToFullAlpha(10f, gameOverCanvas.transform.GetChild(1).gameObject.GetComponent<Text>()));
-        //stop music
-        waveSound.Stop();
-        pianoSound.Stop();
+        gameoverController.GetComponent<GameOver_Controller>().GameOver();
     }
 
     /* ---- AWAKE FUNCTIONS ---- */
 
     private IEnumerator EyeOpen()
     {
-        for(int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
-            float targetWeight = (0.9f - (i/10f));
+            float targetWeight = (0.9f - (i / 10f));
             while (eye.weight > targetWeight)
             {
                 eye.weight -= 0.005f;
@@ -165,9 +131,9 @@ public class GameController : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
             eye.weight = 1;
             yield return new WaitForSeconds(0.05f);
-            eye.weight = (0.9f - (i/10f));
+            eye.weight = (0.9f - (i / 10f));
         }
-       
+
 
         while (eye.weight > 0)
         {
@@ -182,7 +148,7 @@ public class GameController : MonoBehaviour {
 
     private IEnumerator clockVolumeUp()
     {
-        while(speaker.volume < 0.15f)
+        while (speaker.volume < 0.15f)
         {
             speaker.volume += 0.0015f;
             yield return new WaitForSeconds(0.03f);
@@ -301,8 +267,8 @@ public class GameController : MonoBehaviour {
         t.color = new Color(t.color.r, t.color.g, t.color.b, 1);
         while (t.color.a > 0f)
         {
-            
-            t.color = new Color(t.color.r, t.color.g, t.color.b, Mathf.Clamp(t.color.a - (Time.deltaTime * (1/time)), 0f, 1f));
+
+            t.color = new Color(t.color.r, t.color.g, t.color.b, Mathf.Clamp(t.color.a - (Time.deltaTime * (1 / time)), 0f, 1f));
             Debug.Log("Fade in to black, alpha: " + t.color.a);
             yield return null;
         }
