@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class RobotTrigger : MonoBehaviour
@@ -18,7 +19,6 @@ public class RobotTrigger : MonoBehaviour
         {
             //robot.SetActive(true);
             StartCoroutine(bootRobot());
-            this.enabled = false;
         }
     }
 
@@ -36,6 +36,8 @@ public class RobotTrigger : MonoBehaviour
     {
         robot.GetComponent<RobotAnimationController>().TriggerAnimation((int)RobotAnimationController.robotAnimations.walk);
         yield return new WaitForSeconds(1f);
-        robot.GetComponent<RobotNavController>().enabled = true;
+        robot.GetComponent<RobotNavController>().SetFollowing(true);
+        robot.GetComponent<NavMeshAgent>().isStopped = false;
+        this.transform.gameObject.SetActive(false);
     }
 }

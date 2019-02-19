@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class Phase2Conroller : MonoBehaviour
@@ -10,7 +11,7 @@ public class Phase2Conroller : MonoBehaviour
 
     void Start()
     {
-        robot.GetComponent<RobotNavController>().enabled = false;
+        robot.GetComponent<NavMeshAgent>().isStopped = true;
     }
 
     private void Update()
@@ -20,6 +21,7 @@ public class Phase2Conroller : MonoBehaviour
         {
             gameoverController.GetComponent<GameOver_Controller>().Respawn();
         }
+
     }
 
 }

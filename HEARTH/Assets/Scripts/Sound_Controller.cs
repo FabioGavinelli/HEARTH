@@ -14,6 +14,8 @@ public class Sound_Controller : MonoBehaviour
 
     public void SetVolume(int sourceIndex, float vol)
     {
+        if (sourceIndex > audioSources.Length || audioSources.Length == 0) return;
+
         audioSources[sourceIndex].volume = vol;
     }
 
@@ -24,7 +26,7 @@ public class Sound_Controller : MonoBehaviour
 
     public void PlayAudioSource(int sourceIndex, int clipIndex)
     {
-        if (clipIndex > audioClips.Length || sourceIndex > audioSources.Length) return;
+        if (clipIndex > audioClips.Length || sourceIndex > audioSources.Length || audioSources.Length == 0 || audioClips.Length == 0) return;
 
         if (clipIndex >= 0)
         {
@@ -37,6 +39,7 @@ public class Sound_Controller : MonoBehaviour
     public IEnumerator volumeUp(int sourceIndex, float maxVolume, float time, bool forceStart)
     {
         if (maxVolume > 1 && maxVolume <= 0) yield break;
+        if (sourceIndex > audioSources.Length || audioSources.Length == 0) yield break;
         if (forceStart) audioSources[sourceIndex].Play();
 
         while (audioSources[sourceIndex].volume < maxVolume)
@@ -49,6 +52,7 @@ public class Sound_Controller : MonoBehaviour
     public IEnumerator volumeDown(int sourceIndex, float minVolume, float time, bool forceStop)
     {
         if (minVolume < 0 && minVolume > 1) yield break;
+        if (sourceIndex > audioSources.Length || audioSources.Length == 0) yield break;
 
         while (audioSources[sourceIndex].volume > minVolume)
         {
