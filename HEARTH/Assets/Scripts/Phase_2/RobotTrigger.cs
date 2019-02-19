@@ -17,6 +17,7 @@ public class RobotTrigger : MonoBehaviour
     {
         if(other.transform.tag == "Player")
         {
+            robot.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             //robot.SetActive(true);
             StartCoroutine(bootRobot());
         }
