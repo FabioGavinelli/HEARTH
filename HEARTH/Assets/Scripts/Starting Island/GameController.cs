@@ -219,7 +219,7 @@ public class GameController : MonoBehaviour
         if (pianoSound.volume > 0) StartCoroutine(volumeDown(pianoSound, 0f, 2.5f, true));
         //fade to black
         blackScreenCanvas.SetActive(true);
-        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 5f)); ;
+        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 5f));
 
         //start video
         this.GetComponent<VideoPlayer>().clip = endLevelVideo;
@@ -267,7 +267,6 @@ public class GameController : MonoBehaviour
         t.color = new Color(t.color.r, t.color.g, t.color.b, 1);
         while (t.color.a > 0f)
         {
-
             t.color = new Color(t.color.r, t.color.g, t.color.b, Mathf.Clamp(t.color.a - (Time.deltaTime * (1 / time)), 0f, 1f));
             Debug.Log("Fade in to black, alpha: " + t.color.a);
             yield return null;
@@ -276,11 +275,14 @@ public class GameController : MonoBehaviour
 
     private IEnumerator StartEndVideo()
     {
+        blackScreenCanvas.transform.GetChild(0).transform.gameObject.SetActive(false);
         yield return new WaitForSeconds(10f);
         speaker.volume = 0.5f;
         this.GetComponent<VideoPlayer>().Play();
-        //StartCoroutine(FadeInByBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 10f));
+        StartCoroutine(FadeInByBlack(blackScreenCanvas.transform.GetChild(1).GetComponent<Image>(), 1f));
         //blackScreenCanvas.SetActive(false);
+        //blackScreenCanvas.transform.GetChild(1).transform.gameObject.SetActive(false);
+        blackScreenCanvas.transform.GetChild(0).transform.gameObject.SetActive(true);
         StartCoroutine(LoadNewSceneAfterVideo());
     }
 
