@@ -23,6 +23,8 @@ public class PlayerBehaviour : MonoBehaviour {
     private bool keyboardInput = true;
     private bool activePlayer = true;
 
+    [SerializeField] private int seedCount = 0;
+
     public enum animations { Watch, Lift, Walk, Run, Jump, StandUp};
     private int watchAnimHash = Animator.StringToHash("Watch");
     private int liftAnimHash = Animator.StringToHash("Lift");
@@ -106,6 +108,24 @@ public class PlayerBehaviour : MonoBehaviour {
         }
     }
 
+    /* ---- SEEDS FUNCTIONS ---- */
+
+    public void AddSeed()
+    {
+        seedCount++;
+    }
+
+    public void RemoveSeed()
+    {
+        seedCount--;
+    }
+
+    public int GetSeedCount()
+    {
+        return seedCount;
+    }
+
+    /* ---- ANIMATIONS ---- */
 
     public void TriggerAnimation(int animationIndex)
     {

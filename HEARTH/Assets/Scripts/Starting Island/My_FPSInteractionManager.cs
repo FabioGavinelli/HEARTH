@@ -15,6 +15,7 @@ public class My_FPSInteractionManager : MonoBehaviour
     [SerializeField] private GameObject _oar;
     [SerializeField] private AudioClip[] boatCompletionSteps;
     [SerializeField] private AudioSource audioS;
+    [SerializeField] private GameObject tree;
 
     private bool _pointingGrabbable;
     private bool _pointingOutlinable;
@@ -134,6 +135,29 @@ public class My_FPSInteractionManager : MonoBehaviour
                     StartCoroutine(WaitingDroppable(grabbableTag));
                 }
             }
+
+
+            if(hit.transform.tag == "Seeds")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    hit.transform.gameObject.SetActive(false);
+                    for (int i= 0; i < 10; i++)
+                    {
+                        pb.AddSeed();
+                    }
+                }
+            }
+
+            if (hit.transform.tag == "Flowerpot")
+            {
+                if (Input.GetKeyDown(KeyCode.E) && pb.GetSeedCount() > 0)
+                {
+                    pb.RemoveSeed();
+                    Instantiate(tree, hit.transform.position + new Vector3(0f,0.5f,0f), hit.transform.rotation);
+                }
+            }
+
         }
         else
         {
