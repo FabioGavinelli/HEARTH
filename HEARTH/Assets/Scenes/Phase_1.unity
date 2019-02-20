@@ -26254,6 +26254,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2002147035}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2004917506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 540194781, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3156523874161017316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2012392092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28335,6 +28341,10 @@ PrefabInstance:
       propertyPath: gc
       value: 
       objectReference: {fileID: 1442918799}
+    - target: {fileID: 1915585390, guid: e0d55c7660fde3340bb9d8b0e44bdbd5, type: 3}
+      propertyPath: hourPanel
+      value: 
+      objectReference: {fileID: 2004917506}
     - target: {fileID: 1191690163, guid: e0d55c7660fde3340bb9d8b0e44bdbd5, type: 3}
       propertyPath: hammer
       value: 
@@ -28347,6 +28357,10 @@ PrefabInstance:
       propertyPath: gc
       value: 
       objectReference: {fileID: 1442918799}
+    - target: {fileID: 540194781, guid: e0d55c7660fde3340bb9d8b0e44bdbd5, type: 3}
+      propertyPath: m_Name
+      value: HourText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d55c7660fde3340bb9d8b0e44bdbd5, type: 3}
 --- !u!1001 &4389102527610690421
