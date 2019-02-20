@@ -67,4 +67,14 @@ public class RobotNavController : MonoBehaviour {
             reached = true;
         }
     }
+
+    public void SetReachedState(bool state)
+    {
+        reached = state;
+    }
+
+    public bool IsTargetReached()
+    {
+        return reached;
+    }
 }

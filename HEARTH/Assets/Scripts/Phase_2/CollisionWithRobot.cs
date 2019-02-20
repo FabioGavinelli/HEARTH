@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CollisionWithRobot : MonoBehaviour
 {
+    private Transform startLocation;
+
+    private void Start()
+    {
+        startLocation = this.transform;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -13,5 +19,11 @@ public class CollisionWithRobot : MonoBehaviour
             Destroy(this.transform.gameObject, 2f);
         }
     }
+
+    public void ResetAfterGameover()
+    {
+        Instantiate(this.transform.gameObject, startLocation.position, startLocation.rotation);
+    }
+
 
 }

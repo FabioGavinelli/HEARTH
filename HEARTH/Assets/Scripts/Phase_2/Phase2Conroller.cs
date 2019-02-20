@@ -8,11 +8,9 @@ public class Phase2Conroller : MonoBehaviour
 {
     [SerializeField] private GameObject robot;
     [SerializeField] private GameObject gameoverController;
-
-    void Start()
-    {
-        robot.GetComponent<NavMeshAgent>().isStopped = true;
-    }
+    [SerializeField] private GameObject robotController;
+    [SerializeField] private GameObject obstaclesController;
+    private bool gameover = false;
 
     private void Update()
     {
@@ -22,6 +20,15 @@ public class Phase2Conroller : MonoBehaviour
             gameoverController.GetComponent<GameOver_Controller>().Respawn();
         }
 
+        /*
+        if (robot.GetComponent<RobotNavController>().IsTargetReached() == true)
+        {
+            robot.GetComponent<RobotNavController>().SetReachedState(false);
+            gameoverController.GetComponent<GameOver_Controller>().GameOver();
+            StartCoroutine(robotController.GetComponent<RobotController>().ResetOnGameOver());
+            obstaclesController.GetComponent<ObstaclesController>().ResetCubes();
+        }
+        */
     }
 
 }

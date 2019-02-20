@@ -19,6 +19,11 @@ public class RobotController : MonoBehaviour
         Debug.Log(robotSpawn.localRotation);
     }
 
+    public GameObject GetRobotReference()
+    {
+        return robot;
+    }
+
     public IEnumerator ResetOnGameOver()
     {
         robot.SetActive(false);
