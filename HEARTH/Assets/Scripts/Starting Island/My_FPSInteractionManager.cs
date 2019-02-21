@@ -229,12 +229,14 @@ public class My_FPSInteractionManager : MonoBehaviour
         if (grabbable.transform.tag == "Hammer")
         {
             owningHammer = true;
+            _grabbedObject.GetComponent<SpriteToInventory>().AddToInventory();
             _grabbedObject.gameObject.SetActive(false);
             _grabbedObject = null;
         }
         else if(grabbable.transform.tag == "Nails")
         {
             owningNails = true;
+            _grabbedObject.GetComponent<SpriteToInventory>().AddToInventory();
             _grabbedObject.gameObject.SetActive(false);
             _grabbedObject = null;
         }
