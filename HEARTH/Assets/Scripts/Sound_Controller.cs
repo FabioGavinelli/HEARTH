@@ -21,6 +21,7 @@ public class Sound_Controller : MonoBehaviour
 
     public void StopAudioSource(int sourceIndex)
     {
+        if (sourceIndex > audioSources.Length || audioSources.Length == 0) return;
         audioSources[sourceIndex].Stop();
     }
 

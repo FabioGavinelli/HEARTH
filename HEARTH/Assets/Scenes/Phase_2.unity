@@ -28759,11 +28759,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8008277379856535939, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7374666956491320197, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
         type: 3}
       propertyPath: m_IsWalking
@@ -28773,6 +28768,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008277379856535939, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d55c7660fde3340bb9d8b0e44bdbd5, type: 3}
@@ -34592,9 +34592,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766793921}
-  m_LocalRotation: {x: -0.000000029802315, y: 0.0000000074505784, z: -0.000000011175868,
-    w: 1}
-  m_LocalPosition: {x: 25.32835, y: -5.5696216, z: -21.971504}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.32835, y: -5.5696216, z: -26.671505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 893113081}
@@ -69799,6 +69798,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1564239401}
     m_Modifications:
+    - target: {fileID: 84155190564046464, guid: a0eb5b639a3f9e44cb9b5c514669216e,
+        type: 3}
+      propertyPath: m_Name
+      value: GameOver Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 84155190564046464, guid: a0eb5b639a3f9e44cb9b5c514669216e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 158401822669297994, guid: a0eb5b639a3f9e44cb9b5c514669216e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -69902,16 +69911,6 @@ PrefabInstance:
     - target: {fileID: 158401822669297994, guid: a0eb5b639a3f9e44cb9b5c514669216e,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 84155190564046464, guid: a0eb5b639a3f9e44cb9b5c514669216e,
-        type: 3}
-      propertyPath: m_Name
-      value: GameOver Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 84155190564046464, guid: a0eb5b639a3f9e44cb9b5c514669216e,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -75650,10 +75649,10 @@ MonoBehaviour:
   player: {fileID: 211112997}
   damagePPEffect: {fileID: 1538145628}
   gameOverController: {fileID: 2059230534}
-  damage: 0
-  heal: 0
-  damageDelay: 0
-  healingDelay: 0
+  damage: 10
+  heal: 10
+  damageDelay: 0.5
+  healingDelay: 0.2
 --- !u!65 &2086185732
 BoxCollider:
   m_ObjectHideFlags: 0

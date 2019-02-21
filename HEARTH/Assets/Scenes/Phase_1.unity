@@ -17996,10 +17996,10 @@ MonoBehaviour:
   player: {fileID: 5590705720498694749}
   damagePPEffect: {fileID: 209642947}
   gameOverController: {fileID: 1353072407}
-  damage: 0
-  heal: 0
-  damageDelay: 0
-  healingDelay: 0
+  damage: 6.25
+  heal: 10
+  damageDelay: 0.5
+  healingDelay: 2
 --- !u!114 &1240814095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29740,7 +29740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3156523873387004553
 RectTransform:
   m_ObjectHideFlags: 0

@@ -17,10 +17,6 @@ public class WaterDamage : MonoBehaviour {
 
     private void Start()
     {
-        damage = 6.25f;
-        heal = 10f;
-        damageDelay = 0.5f;
-        healingDelay = 2.0f;
         ppVolume = damagePPEffect.GetComponent<PostProcessVolume>();
     }
 
