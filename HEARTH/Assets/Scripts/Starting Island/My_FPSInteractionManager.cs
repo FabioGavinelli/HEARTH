@@ -33,6 +33,7 @@ public class My_FPSInteractionManager : MonoBehaviour
     private Vector3 rayOrigin;
     private Vector3 OutlineRay;
     private OutlineObject pointed = null;
+    private ConsciousnessController conscSound;
 
     private Grabbable _grabbedObject = null;     
     private GameObject interactingObject;
@@ -53,6 +54,7 @@ public class My_FPSInteractionManager : MonoBehaviour
     {
         fpsController = GetComponent<CharacterController>();
         pb = GetComponent<PlayerBehaviour>();
+        conscSound = GameObject.FindGameObjectWithTag("Consciousness").GetComponent<ConsciousnessController>();
     }
 
     void Update()
@@ -169,7 +171,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                     pb.RemoveSeed();
                     Instantiate(tree, hit.transform.position + new Vector3(0f,0.5f,0f), hit.transform.rotation);
                     pb.setSafe(true);
-                    hit.transform.gameObject.SetActive(false);
+                    hit.transform.gameObject.GetComponent<Collider>().enabled = false;
                 }
             }
 
@@ -194,13 +196,12 @@ public class My_FPSInteractionManager : MonoBehaviour
             //StartCoroutine(DisableCollider());
             if(repairState == 3 && _oar.activeSelf)
             {
-                audioS.clip = boatCompletionSteps[1];
-                audioS.Play();
+                conscSound.PlayAudioClip(6);
             }
+
             if (repairState == 3 && !(_oar.activeSelf))
             {
-                audioS.clip = boatCompletionSteps[2];
-                audioS.Play();
+                conscSound.PlayAudioClip(7);
             }
 
         } else if (_grabbedObject.transform.tag == "Oar" && enteredShipZone) {
@@ -212,8 +213,7 @@ public class My_FPSInteractionManager : MonoBehaviour
         } else {
             if (enteredShipZone)
             {
-                audioS.clip = boatCompletionSteps[0];
-                audioS.Play();
+                conscSound.PlayAudioClip(4);
             }
             _grabbedObject.transform.parent = _grabbedObject.OriginalParent;
             _grabbedObject.Drop();
@@ -235,6 +235,7 @@ public class My_FPSInteractionManager : MonoBehaviour
         }
         else if(grabbable.transform.tag == "Nails")
         {
+            conscSound.PlayAudioClip(5);
             owningNails = true;
             _grabbedObject.GetComponent<SpriteToInventory>().AddToInventory();
             _grabbedObject.gameObject.SetActive(false);

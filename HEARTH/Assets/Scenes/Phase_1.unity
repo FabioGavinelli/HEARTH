@@ -11467,6 +11467,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082538933}
+  - component: {fileID: 1082238873}
+  - component: {fileID: 1082238870}
   m_Layer: 0
   m_Name: boat_final
   m_TagString: Untagged
@@ -11474,6 +11476,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
   m_IsActive: 1
+--- !u!114 &1082238870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082238869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1a0ee5a433d624aa7eade5c5df3616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1082238871
 GameObject:
   m_ObjectHideFlags: 0
@@ -16035,6 +16049,19 @@ MonoBehaviour:
     - {x: -0.2760432, y: 0.1497256, z: -0.94941163}
     - {x: -0.89060116, y: -0.4174369, z: 0.18048851}
     - {x: -0.93418956, y: 0.18915737, z: 0.3025053}
+--- !u!65 &1082238873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082238869}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.4101305, y: 2.2393413, z: 10.319524}
+  m_Center: {x: -0.087487616, y: 0.6196729, z: -0.95969766}
 --- !u!1 &1082238875
 GameObject:
   m_ObjectHideFlags: 0
@@ -20673,12 +20700,9 @@ MonoBehaviour:
   player: {fileID: 5590705720498694749}
   wakeUpPPEffect: {fileID: 2142954460}
   alarmClock: {fileID: 8300000, guid: 20b547d0699094247bbeadd196b31d8f, type: 3}
-  voices:
-  - {fileID: 8300000, guid: d14be05c95967d94e8c749d25902098a, type: 3}
-  - {fileID: 8300000, guid: f44127f001d771d4ca89c08b71db5a26, type: 3}
   waveSound: {fileID: 1781366328}
   pianoSound: {fileID: 1665474526}
-  consciousnessSound: {fileID: 1883871295}
+  consciousnessSounds: {fileID: 1883871293}
   endLevelVideo: {fileID: 32900000, guid: 431c3912d9528a44c956db84eca1d8d7, type: 3}
   tutorialCanvas: {fileID: 442424463973498073}
   blackScreenCanvas: {fileID: 443202807920884403}
@@ -29300,7 +29324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3156523873387004553
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29652,7 +29676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3156523874074767945
 RectTransform:
   m_ObjectHideFlags: 0

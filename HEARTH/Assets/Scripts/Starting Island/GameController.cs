@@ -13,10 +13,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject wakeUpPPEffect;
     [SerializeField] private AudioClip alarmClock;
-    [SerializeField] private AudioClip[] voices;
     [SerializeField] private AudioSource waveSound;
     [SerializeField] private AudioSource pianoSound;
-    [SerializeField] private AudioSource consciousnessSound;
+    [SerializeField] private GameObject consciousnessSounds;
     [SerializeField] private VideoClip endLevelVideo;
     [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private GameObject blackScreenCanvas;
@@ -78,8 +77,7 @@ public class GameController : MonoBehaviour
                         tutorialCanvas.SetActive(false);
                         pb.SetKeyboardInput(false);
                         StartCoroutine(timedTutorialText(tutorialCanvas, phase, 11f));
-                        consciousnessSound.clip = voices[0];
-                        consciousnessSound.Play();
+                        consciousnessSounds.GetComponent<ConsciousnessController>().PlayAudioClip(0);
                     }
                     break;
 
@@ -89,8 +87,7 @@ public class GameController : MonoBehaviour
                     tutorialCanvas.SetActive(false);
                     playerAnimator.SetBool("Watch", true);
                     StartCoroutine(ShowMenuCanvas());
-                    consciousnessSound.clip = voices[1];
-                    consciousnessSound.Play();
+                    consciousnessSounds.GetComponent<ConsciousnessController>().PlayAudioClip(1);
                     break;
 
                 /*
