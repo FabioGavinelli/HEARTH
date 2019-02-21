@@ -5701,8 +5701,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487451082}
-  m_LocalRotation: {x: -0.29718223, y: 0.6905669, z: 0.3816622, w: 0.5377119}
-  m_LocalPosition: {x: 37.23772, y: -56.32833, z: -7.7974916}
+  m_LocalRotation: {x: -0, y: 0.785317, z: -0, w: 0.6190939}
+  m_LocalPosition: {x: 33.899837, y: -2.5936213, z: -1.9616394}
   m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1382230500}
@@ -29095,7 +29095,7 @@ RectTransform:
   m_Children:
   - {fileID: 3156523874711707375}
   m_Father: {fileID: 3156523874074767945}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.79700005, y: 0.097}
   m_AnchorMax: {x: 0.882, y: 0.20939736}
@@ -29188,7 +29188,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -29740,7 +29740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3156523873387004553
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30324,7 +30324,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3156523874074767945}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -30476,9 +30476,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -230}
   m_LocalScale: {x: 0.63521, y: 0.63521, z: 0.63521}
   m_Children:
-  - {fileID: 3156523872985752896}
   - {fileID: 3156523874350960372}
   - {fileID: 3156523873859022357}
+  - {fileID: 3156523872985752896}
   m_Father: {fileID: 3156523873387004553}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30787,7 +30787,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3156523874074767945}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.069273055, y: 0.34445477}
   m_AnchorMax: {x: 0.9312209, y: 0.9066888}
