@@ -13,8 +13,6 @@ public class My_FPSInteractionManager : MonoBehaviour
     [SerializeField] private float _grabDistance;
     [SerializeField] private Transform _grabbedObjPosition;
     [SerializeField] private GameObject _oar;
-    [SerializeField] private AudioClip[] boatCompletionSteps;
-    [SerializeField] private AudioSource audioS;
     [SerializeField] private GameObject tree;
     [SerializeField] private GameObject torchLight;
 
