@@ -17,7 +17,14 @@ public class MainMenuManager : MonoBehaviour
     {
         this.transform.localScale = initialSize;
         minutes += (int)Time.realtimeSinceStartup/60;
-        hourPanel.GetComponent<Text>().text = "17:" + minutes; 
+        if (minutes / 10 < 1)
+        {
+            hourPanel.GetComponent<Text>().text = "17:0" + minutes;
+        }
+        else
+        {
+            hourPanel.GetComponent<Text>().text = "17:" + minutes;
+        }
         StartCoroutine(TurnOnOlograms());
     }
 
