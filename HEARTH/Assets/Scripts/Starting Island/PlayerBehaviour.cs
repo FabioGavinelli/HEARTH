@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour {
@@ -12,6 +13,8 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField] private Transform gameplayPosition;
     [SerializeField] private Transform animationPosition;
     [SerializeField] private GameObject gameoverController;
+    [SerializeField] private GameObject damagePostProcess;
+    private PostProcessVolume ppVolume;
     private My_MouseLook mouseLook;
     private Camera fpsCamera;
     private Animator animator;
@@ -45,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour {
         fpsCamera = Camera.main;
         animator = GetComponentInChildren<Animator>();
         mouseLook = this.GetComponent<My_FPSController>().getMouseLook();
+        ppVolume = damagePostProcess.GetComponent<PostProcessVolume>();
         //Se sono su prima isola metto activePlayer a false all'inizio
     }
 
@@ -100,6 +104,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public void Damage(float damage)
     {
         lifePoints -= damage;
+        ppVolume.weight += (1f / (125 / damage));
         if(lifePoints <= 0)
         {
             gameoverController.GetComponent<GameOver_Controller>().GameOver();
@@ -109,6 +114,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public void Heal(float health)
     {
         lifePoints += health;
+        ppVolume.weight -= (1f / (125 / health));
         if (lifePoints >= 100)
         {
             lifePoints = 100;

@@ -13,6 +13,7 @@ TagManager:
   - Flowerpot
   - Tree
   - Torch
+  - Consciousness
   layers:
   - Default
   - TransparentFX

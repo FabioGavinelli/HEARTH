@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameOver_Controller : MonoBehaviour
@@ -40,6 +41,7 @@ public class GameOver_Controller : MonoBehaviour
             //StartCoroutine(volumeUp(pianoSound, 0.2f, 2f, true));
             //reset step sound
             player.GetComponent<My_FPSController>().SetStepSound(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

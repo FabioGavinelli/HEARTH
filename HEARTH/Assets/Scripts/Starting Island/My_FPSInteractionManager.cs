@@ -16,6 +16,7 @@ public class My_FPSInteractionManager : MonoBehaviour
     [SerializeField] private AudioClip[] boatCompletionSteps;
     [SerializeField] private AudioSource audioS;
     [SerializeField] private GameObject tree;
+    [SerializeField] private GameObject torchLight;
 
     private bool _pointingGrabbable;
     private bool _pointingOutlinable;
@@ -157,7 +158,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                 {
                     pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
                     StartCoroutine(WaitingLifting(hit.transform.gameObject, 1.3f));
-                    
+                    torchLight.SetActive(true);
                 }
             }
 
@@ -168,6 +169,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                     pb.RemoveSeed();
                     Instantiate(tree, hit.transform.position + new Vector3(0f,0.5f,0f), hit.transform.rotation);
                     pb.setSafe(true);
+                    hit.transform.gameObject.SetActive(false);
                 }
             }
 

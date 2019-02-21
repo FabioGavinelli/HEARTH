@@ -32807,6 +32807,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPSController
       objectReference: {fileID: 0}
+    - target: {fileID: 7374666956491618203, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374666956491618203, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374666956491618203, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 7374666956491618201, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32873,21 +32888,11 @@ PrefabInstance:
       propertyPath: gameoverController
       value: 
       objectReference: {fileID: 385168379}
-    - target: {fileID: 7374666956491618203, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
+    - target: {fileID: 7374666956491320250, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.38268343
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374666956491618203, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.92387956
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374666956491618203, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
-      objectReference: {fileID: 0}
+      propertyPath: damagePostProcess
+      value: 
+      objectReference: {fileID: 1028864829}
     - target: {fileID: 3156523874180314025, guid: e0d55c7660fde3340bb9d8b0e44bdbd5,
         type: 3}
       propertyPath: m_IsActive

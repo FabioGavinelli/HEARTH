@@ -18,7 +18,7 @@ public class Phase3Controller : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")))
         {
             gameoverController.GetComponent<GameOver_Controller>().Respawn();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         }
     }
 
