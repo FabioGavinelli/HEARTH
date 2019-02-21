@@ -104,7 +104,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public void Damage(float damage)
     {
         lifePoints -= damage;
-        ppVolume.weight += (1f / (125 / damage));
+        ppVolume.weight += (1f / (100 / damage));
         if(lifePoints <= 0)
         {
             gameoverController.GetComponent<GameOver_Controller>().GameOver();
@@ -114,10 +114,11 @@ public class PlayerBehaviour : MonoBehaviour {
     public void Heal(float health)
     {
         lifePoints += health;
-        ppVolume.weight -= (1f / (125 / health));
+        ppVolume.weight -= (1f / (100 / health));
         if (lifePoints >= 100)
         {
             lifePoints = 100;
+            ppVolume.weight = 0;
         }
     }
 

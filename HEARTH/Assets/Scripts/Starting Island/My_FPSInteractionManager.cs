@@ -173,6 +173,18 @@ public class My_FPSInteractionManager : MonoBehaviour
                 }
             }
 
+            if (hit.transform.tag == "Letter")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    hit.transform.GetChild(0).gameObject.SetActive(true);
+                    this.GetComponent<My_FPSController>().enabled = false;
+                    this.GetComponent<CharacterController>().enabled = false;
+                    Cursor.visible = true;
+                    Screen.lockCursor = false;
+                }
+            }
+
         }
         else
         {

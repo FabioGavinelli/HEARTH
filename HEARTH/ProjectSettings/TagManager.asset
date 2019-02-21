@@ -14,6 +14,7 @@ TagManager:
   - Tree
   - Torch
   - Consciousness
+  - Letter
   layers:
   - Default
   - TransparentFX

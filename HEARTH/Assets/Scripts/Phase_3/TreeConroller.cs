@@ -49,8 +49,8 @@ public class TreeConroller : MonoBehaviour
         while (pb.lifePoints > 0 && (pb.getSafe() == false))
         {
             Debug.Log("damaging");
-            pb.Damage(5f);
-            yield return new WaitForSeconds(0.25f);
+            pb.Damage(1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
