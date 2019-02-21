@@ -32,7 +32,7 @@ public class WaterDamage : MonoBehaviour {
         if (player.GetComponent<PlayerBehaviour>().getLifePoints() <= 0)
         {
             damagePPEffect.GetComponent<PostProcessVolume>().weight = 0;
-            gameOverController.GetComponent<GameOver_Controller>().GameOver();
+            //gameOverController.GetComponent<GameOver_Controller>().GameOver();
         }
     }
 

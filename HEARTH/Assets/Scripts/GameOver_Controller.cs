@@ -11,11 +11,13 @@ public class GameOver_Controller : MonoBehaviour
     [SerializeField] private GameObject audioController;
     private bool respawnable = false;
     private Vector3 respawnLocation;
+    private Quaternion respawnRotation;
 
     // Start is called before the first frame update
     void Start()
     {
         respawnLocation = player.transform.position;
+        respawnRotation = player.transform.rotation;
     }
 
 
@@ -61,6 +63,7 @@ public class GameOver_Controller : MonoBehaviour
         respawnable = false;
         player.GetComponent<PlayerBehaviour>().setLifePoints(100f);
         player.transform.position = respawnLocation;
+        player.transform.rotation = respawnRotation;
         player.GetComponent<My_FPSController>().enabled = false;
         gameOverCanvas.SetActive(true);
         StartCoroutine(FadeTextToFullAlpha(10f, gameOverCanvas.transform.GetChild(1).gameObject.GetComponent<Text>()));

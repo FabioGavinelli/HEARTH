@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour {
     [SerializeField] private Transform headBonePosition;
     [SerializeField] private Transform gameplayPosition;
     [SerializeField] private Transform animationPosition;
+    [SerializeField] private GameObject gameoverController;
     private My_MouseLook mouseLook;
     private Camera fpsCamera;
     private Animator animator;
@@ -98,6 +100,10 @@ public class PlayerBehaviour : MonoBehaviour {
     public void Damage(float damage)
     {
         lifePoints -= damage;
+        if(lifePoints <= 0)
+        {
+            gameoverController.GetComponent<GameOver_Controller>().GameOver();
+        }
     }
 
     public void Heal(float health)

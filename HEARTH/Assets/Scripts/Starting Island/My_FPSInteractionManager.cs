@@ -142,7 +142,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.transform.gameObject.SetActive(false);
-                    for (int i= 0; i < 10; i++)
+                    for (int i= 0; i < hit.transform.gameObject.GetComponent<SeedController>().GetNumeberOfSeeds(); i++)
                     {
                         pb.AddSeed();
                     }
