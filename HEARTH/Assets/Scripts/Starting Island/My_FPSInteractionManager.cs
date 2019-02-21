@@ -141,11 +141,23 @@ public class My_FPSInteractionManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    hit.transform.gameObject.SetActive(false);
+                    pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
+                    StartCoroutine(WaitingLifting(hit.transform.gameObject, 1.3f));
+
                     for (int i= 0; i < hit.transform.gameObject.GetComponent<SeedController>().GetNumeberOfSeeds(); i++)
                     {
                         pb.AddSeed();
                     }
+                }
+            }
+
+            if (hit.transform.tag == "Torch")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
+                    StartCoroutine(WaitingLifting(hit.transform.gameObject, 1.3f));
+                    
                 }
             }
 
@@ -210,7 +222,7 @@ public class My_FPSInteractionManager : MonoBehaviour
     private void Grab(Grabbable grabbable)
     {
         _grabbedObject = grabbable;
-        grabbable.GetComponentInChildren<OutlineObj>().enabled = false;
+        grabbable.GetComponentInChildren<OutlineObj>().enabled = false; 
 
         if (grabbable.transform.tag == "Hammer")
         {
@@ -269,6 +281,13 @@ public class My_FPSInteractionManager : MonoBehaviour
         Grab(grab);
         grab.gameObject.SetActive(false);
         
+    }
+
+    public IEnumerator WaitingLifting(GameObject go, float time)
+    {
+        yield return new WaitForSeconds(time);
+        go.SetActive(false);
+
     }
 
     private IEnumerator ShowObj(Grabbable grab, float time)

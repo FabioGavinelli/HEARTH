@@ -11,7 +11,7 @@ public class TreeConroller : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         pb = player.GetComponent<PlayerBehaviour>();
-
+        
     }
 
     private void OnTriggerEnter(Collider other)

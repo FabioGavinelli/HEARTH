@@ -9,6 +9,10 @@ TagManager:
   - Oar
   - Nails
   - Robot
+  - Seeds
+  - Flowerpot
+  - Tree
+  - Torch
   layers:
   - Default
   - TransparentFX
