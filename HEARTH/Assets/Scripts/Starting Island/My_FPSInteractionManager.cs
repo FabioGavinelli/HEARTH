@@ -155,6 +155,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                 {
                     pb.RemoveSeed();
                     Instantiate(tree, hit.transform.position + new Vector3(0f,0.5f,0f), hit.transform.rotation);
+                    pb.setSafe(true);
                 }
             }
 

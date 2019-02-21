@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public float lifePoints;
 
     private bool menuState = false;
+    private bool safe = false; 
     private bool grabbed = false;
     public GameObject menuCanvas;
 
@@ -245,5 +246,14 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         animator.SetBool("Obj", state);
         grabbed = state;
+    }
+    public bool getSafe()
+    {
+        return safe;
+    }
+
+    public void setSafe(bool state)
+    {
+        safe = state;
     }
 }

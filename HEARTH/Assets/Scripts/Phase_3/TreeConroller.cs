@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class TreeConroller : MonoBehaviour
 {
-    [SerializeField] private bool contaminatedAir = true;
-    [SerializeField] private GameObject player;
+    private GameObject player;
     private PlayerBehaviour pb;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         pb = player.GetComponent<PlayerBehaviour>();
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            ContaminatedAir(false);
+            pb.setSafe(true);
             StopCoroutine(AirDamage());
             StartCoroutine(HealPlayer());
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            pb.setSafe(true);
+            //StopCoroutine(AirDamage());
+            //StartCoroutine(HealPlayer());
         }
     }
 
@@ -27,7 +38,7 @@ public class TreeConroller : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            ContaminatedAir(true);
+            pb.setSafe(false); 
             StopCoroutine(HealPlayer());
             StartCoroutine(AirDamage());
         } 
@@ -35,7 +46,7 @@ public class TreeConroller : MonoBehaviour
 
     private IEnumerator AirDamage()
     {
-        while (pb.lifePoints > 0)
+        while (pb.lifePoints > 0 && (pb.getSafe() == false))
         {
             Debug.Log("damaging");
             pb.Damage(5f);
@@ -45,16 +56,11 @@ public class TreeConroller : MonoBehaviour
 
     private IEnumerator HealPlayer()
     {
-        while (pb.lifePoints < 100)
+        while (pb.lifePoints < 100 && (pb.getSafe() == true))
         {
             Debug.Log("healing");
             pb.Heal(1f);
             yield return new WaitForSeconds(0.01f);
         }
-    }
-
-    public void ContaminatedAir(bool state)
-    {
-        contaminatedAir = state;
     }
 }
