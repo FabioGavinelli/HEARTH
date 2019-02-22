@@ -38,7 +38,7 @@ public class RobotTrigger : MonoBehaviour
         robot.GetComponent<RobotAnimationController>().TriggerAnimation((int)RobotAnimationController.robotAnimations.walk);
         yield return new WaitForSeconds(1f);
         robot.GetComponent<RobotNavController>().SetFollowing(true);
-        robot.GetComponent<NavMeshAgent>().isStopped = false;
+        //robot.GetComponent<NavMeshAgent>().isStopped = false;
         this.transform.gameObject.SetActive(false);
     }
 }

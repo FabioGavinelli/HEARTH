@@ -104,7 +104,7 @@ public class Phase2Conroller : MonoBehaviour
 
     private IEnumerator LoadNewSceneAfterVideo()
     {
-        yield return new WaitForSeconds(11f);
+        yield return new WaitForSeconds(13f);
         SceneManager.LoadScene(3);
     }
 

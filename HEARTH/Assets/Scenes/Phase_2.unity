@@ -20022,7 +20022,7 @@ MonoBehaviour:
   robotController: {fileID: 109433993}
   obstaclesController: {fileID: 2023016154}
   blackScreenCanvas: {fileID: 1770835007}
-  endLevelVideo: {fileID: 32900000, guid: 431c3912d9528a44c956db84eca1d8d7, type: 3}
+  endLevelVideo: {fileID: 32900000, guid: 961e2dbc2197339478a9ecbef9d44b7e, type: 3}
 --- !u!4 &457940966
 Transform:
   m_ObjectHideFlags: 0
@@ -20045,7 +20045,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457940964}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 431c3912d9528a44c956db84eca1d8d7, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 961e2dbc2197339478a9ecbef9d44b7e, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
