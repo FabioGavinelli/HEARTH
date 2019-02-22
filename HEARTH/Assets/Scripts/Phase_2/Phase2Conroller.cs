@@ -19,10 +19,13 @@ public class Phase2Conroller : MonoBehaviour
     private bool gameover = false;
     private bool lvl2end = false;
     private AudioSource speaker;
+    private ConsciousnessController conscController;
 
     private void Start()
     {
         speaker = GetComponent<AudioSource>();
+        conscController = GameObject.FindGameObjectWithTag("Consciousness").GetComponent<ConsciousnessController>();
+        conscController.PlayAudioClip(0);
     }
 
     private void Update()
@@ -60,7 +63,7 @@ public class Phase2Conroller : MonoBehaviour
 
         //fade to black
         blackScreenCanvas.SetActive(true);
-        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 5f));
+        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 2f));
 
         //start video
         this.GetComponent<VideoPlayer>().clip = endLevelVideo;

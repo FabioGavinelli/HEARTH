@@ -6,18 +6,23 @@ public class TreeConroller : MonoBehaviour
 {
     private GameObject player;
     private PlayerBehaviour pb;
+    private AudioSource audio;
+    [SerializeField] AudioClip[] consciousness;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         pb = player.GetComponent<PlayerBehaviour>();
-        
+        audio = this.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
+            audio.clip = consciousness[1];
+            audio.Play();
+
             pb.setSafe(true);
             StopCoroutine(AirDamage());
             StartCoroutine(HealPlayer());
@@ -41,6 +46,8 @@ public class TreeConroller : MonoBehaviour
             pb.setSafe(false); 
             StopCoroutine(HealPlayer());
             StartCoroutine(AirDamage());
+            audio.clip = consciousness[0];
+            audio.Play();
         } 
     }
 
