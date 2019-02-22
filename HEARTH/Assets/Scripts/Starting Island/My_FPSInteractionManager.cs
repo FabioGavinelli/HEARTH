@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using System.Collections;
 using UnityStandardAssets.Utility;
 
@@ -142,6 +143,7 @@ public class My_FPSInteractionManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    hit.transform.gameObject.GetComponent<SpriteToInventory>().AddToInventory();
                     pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
                     StartCoroutine(WaitingLifting(hit.transform.gameObject, 1.3f));
 
@@ -156,9 +158,11 @@ public class My_FPSInteractionManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    hit.transform.gameObject.GetComponent<SpriteToInventory>().AddToInventory();
                     pb.TriggerAnimation((int)PlayerBehaviour.animations.Lift);
                     StartCoroutine(WaitingLifting(hit.transform.gameObject, 1.3f));
                     torchLight.SetActive(true);
+
                 }
             }
 
@@ -177,12 +181,25 @@ public class My_FPSInteractionManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    hit.transform.gameObject.GetComponent<SpriteToInventory>().AddToInventory();
                     hit.transform.GetChild(0).gameObject.SetActive(true);
                     this.GetComponent<My_FPSController>().enabled = false;
                     this.GetComponent<CharacterController>().enabled = false;
                     Cursor.visible = true;
                     Screen.lockCursor = false;
                 }
+            }
+
+            if(hit.transform.tag == "PC" && (Input.GetKeyDown(KeyCode.E))) 
+            {
+                _fpsCameraT.transform.DOLocalRotate(new Vector3(0f, 0f, 0f), 2f);
+                this.GetComponent<My_FPSController>().enabled = false;
+                this.GetComponent<CharacterController>().enabled = false;
+                Cursor.visible = true;
+                Screen.lockCursor = false;
+
+                this.transform.DOMove( hit.transform.GetChild(0).transform.position, 1f);
+                this.transform.DORotateQuaternion(hit.transform.GetChild(0).transform.rotation, 1f);
             }
 
         }
