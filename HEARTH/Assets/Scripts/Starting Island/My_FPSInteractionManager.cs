@@ -16,6 +16,7 @@ public class My_FPSInteractionManager : MonoBehaviour
     [SerializeField] private GameObject _oar;
     [SerializeField] private GameObject tree;
     [SerializeField] private GameObject torchLight;
+    [SerializeField] private Text uiTextNumSeed;
 
     private bool _pointingGrabbable;
     private bool _pointingOutlinable;
@@ -151,6 +152,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                     {
                         pb.AddSeed();
                     }
+                    uiTextNumSeed.text = pb.GetSeedCount().ToString();
                 }
             }
 
@@ -174,6 +176,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                     Instantiate(tree, hit.transform.position + new Vector3(0f,0.5f,0f), hit.transform.rotation);
                     pb.setSafe(true);
                     hit.transform.gameObject.GetComponent<Collider>().enabled = false;
+                    uiTextNumSeed.text = pb.GetSeedCount().ToString();
                 }
             }
 

@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 8414850794180222260}
   - {fileID: 6848206519149854483}
   my_fpsInter: {fileID: 0}
+  num_objects: 0
 --- !u!1 &6848206519149854479
 GameObject:
   m_ObjectHideFlags: 0
