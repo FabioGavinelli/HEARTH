@@ -83,7 +83,6 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             menuState = !menuState;
             menuCanvas.SetActive(menuState);
-            Cursor.visible = menuState;
             TriggerAnimation((int)animations.Watch);
         }
 

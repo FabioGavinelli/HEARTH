@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Phase3Controller : MonoBehaviour
 {
-    [SerializeField] private GameObject gameoverController;    
+    [SerializeField] private GameObject gameoverController;
+    [SerializeField] private GameObject player;
 
     void Start()
     {
-        
+        player.GetComponent<My_FPSController>().SetStepSound(1);    
     }
 
     void Update()

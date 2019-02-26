@@ -13,19 +13,21 @@ public class TreeConroller : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         pb = player.GetComponent<PlayerBehaviour>();
-        audio = this.GetComponent<AudioSource>();
+        //audio = this.GetComponent<AudioSource>();
+        audio = GameObject.FindGameObjectWithTag("Consciousness").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            audio.clip = consciousness[1];
-            audio.Play();
-
             pb.setSafe(true);
             StopCoroutine(AirDamage());
             StartCoroutine(HealPlayer());
+            //audio.Stop();
+            audio.clip = consciousness[1];
+            audio.Play();
+
         }
     }
 
@@ -46,6 +48,7 @@ public class TreeConroller : MonoBehaviour
             pb.setSafe(false); 
             StopCoroutine(HealPlayer());
             StartCoroutine(AirDamage());
+            //audio.Stop();
             audio.clip = consciousness[0];
             audio.Play();
         } 
@@ -55,7 +58,6 @@ public class TreeConroller : MonoBehaviour
     {
         while (pb.lifePoints > 0 && (pb.getSafe() == false))
         {
-            Debug.Log("damaging");
             pb.Damage(1f);
             yield return new WaitForSeconds(0.05f);
         }
@@ -65,7 +67,6 @@ public class TreeConroller : MonoBehaviour
     {
         while (pb.lifePoints < 100 && (pb.getSafe() == true))
         {
-            Debug.Log("healing");
             pb.Heal(1f);
             yield return new WaitForSeconds(0.01f);
         }

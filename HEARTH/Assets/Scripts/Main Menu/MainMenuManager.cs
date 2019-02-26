@@ -38,6 +38,11 @@ public class MainMenuManager : MonoBehaviour
 
         this.transform.localScale = initialSize;
         minutes += (int)Time.realtimeSinceStartup/60;
+        if(minutes >= 60)
+        {
+            hour++;
+            minutes = 0;
+        }
         if (minutes / 10 < 1)
         {
             hourPanel.GetComponent<Text>().text = hour + ":0" + minutes;
