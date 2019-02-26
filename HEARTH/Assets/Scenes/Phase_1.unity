@@ -3694,31 +3694,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.55868
+      value: -39.51
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.069
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.642473
+      value: 22.47
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6834433
+      value: -0.49534094
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.23329881
+      value: -0.08405619
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.2688269
+      value: -0.18344696
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6373454
+      value: 0.8449373
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_RootOrder
@@ -3726,15 +3726,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -85.283005
+      value: -60.216003
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -121.563
+      value: 4.583
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 163.194
+      value: -27.158
       objectReference: {fileID: 0}
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalScale.x
@@ -9866,7 +9866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876271018}
   m_LocalRotation: {x: -0.21995988, y: -0.9550657, z: -0.014483286, w: 0.19813468}
-  m_LocalPosition: {x: -36.57247, y: 0.3808269, z: 2.9086666}
+  m_LocalPosition: {x: -36.57247, y: 0.45, z: 2.9086666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1082538933}
@@ -16108,7 +16108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 159833dff7ae8854fa2e3718dfdba89a, type: 2}
+  - {fileID: 2100000, guid: 22af494c30c2e034387b8fa4eceee928, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20374,7 +20374,8 @@ MonoBehaviour:
   tutorialCanvas: {fileID: 442424463973498073}
   blackScreenCanvas: {fileID: 443202807920884403}
   menuCanvas: {fileID: 3156523873387004552}
-  phase: 0
+  exiting: 0
+  phase: 3
   gameoverController: {fileID: 1353072407}
   audioController: {fileID: 1398762576}
 --- !u!4 &1442918800
@@ -27249,6 +27250,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: b544816461f324e56a39767fdeb5b114, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b544816461f324e56a39767fdeb5b114, type: 3}
 --- !u!4 &2058449451 stripped
@@ -33494,6 +33499,7 @@ MonoBehaviour:
   _oar: {fileID: 352884285}
   tree: {fileID: 0}
   torchLight: {fileID: 0}
+  uiTextNumSeed: {fileID: 0}
   repairState: 0
 --- !u!114 &5590705720498694753
 MonoBehaviour:

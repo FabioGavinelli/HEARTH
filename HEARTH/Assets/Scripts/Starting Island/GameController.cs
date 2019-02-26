@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     private PlayerBehaviour pb;
     private Animator playerAnimator;
     private bool ended = false;
+    public bool exiting = false;
 
     private string[] tutorialMessages = {"PRESS [E] TO STAND UP",
                                          "PRESS [E] TO TURN OFF THE ALARM" };
@@ -55,6 +56,16 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            exiting = true;
+            StartCoroutine(ExitingLevel());
+        }
+        else
+        {
+            exiting = false;
+            StopCoroutine(ExitingLevel());
+        }
 
         //RESPAWN
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")))
@@ -287,6 +298,14 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(11f);
         SceneManager.LoadScene(2);
+    }
+
+    private IEnumerator ExitingLevel()
+    {
+        yield return new WaitForSeconds(4f);
+        Debug.Log(exiting);
+        if(exiting == true)
+            SceneManager.LoadScene(0);
     }
 
 }
