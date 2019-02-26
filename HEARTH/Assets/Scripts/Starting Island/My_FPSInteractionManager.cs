@@ -185,6 +185,7 @@ public class My_FPSInteractionManager : MonoBehaviour
                     hit.transform.GetChild(0).gameObject.SetActive(true);
                     this.GetComponent<My_FPSController>().enabled = false;
                     this.GetComponent<CharacterController>().enabled = false;
+                    this.GetComponent<PlayerBehaviour>().enabled = false;
                     Cursor.visible = true;
                     Screen.lockCursor = false;
                 }

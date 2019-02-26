@@ -41,7 +41,8 @@ public class GameOver_Controller : MonoBehaviour
             //StartCoroutine(volumeUp(pianoSound, 0.2f, 2f, true));
             //reset step sound
             player.GetComponent<My_FPSController>().SetStepSound(0);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

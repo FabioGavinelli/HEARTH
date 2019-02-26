@@ -26,6 +26,7 @@ public class LetterController : MonoBehaviour
     {
         player.GetComponent<My_FPSController>().enabled = true;
         player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<PlayerBehaviour>().enabled = true;
         this.gameObject.SetActive(false);
         this.transform.parent.gameObject.SetActive(false);
     }
