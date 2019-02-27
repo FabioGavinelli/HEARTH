@@ -778,6 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots: []
   my_fpsInter: {fileID: 7374666956491320196}
+  num_objects: 0
 --- !u!1 &1202022805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +1470,7 @@ GameObject:
   - component: {fileID: 7374666956491320196}
   - component: {fileID: 7374666956491320250}
   - component: {fileID: 5590705720498694757}
+  - component: {fileID: 4814892275628697029}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Player
@@ -1761,6 +1763,7 @@ MonoBehaviour:
   _oar: {fileID: 0}
   tree: {fileID: 0}
   torchLight: {fileID: 44127169}
+  uiTextNumSeed: {fileID: 0}
   repairState: 0
 --- !u!114 &7374666956491320250
 MonoBehaviour:
@@ -1879,6 +1882,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4814892275628697029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374666956491320249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8184aab1775f2d64981a079156ac34d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fpsCameraT: {fileID: 7374666956491618203}
+  _interactionDistance: 1.5
+  _debugRay: 1
 --- !u!1 &7374666956491320251
 GameObject:
   m_ObjectHideFlags: 0
@@ -5706,14 +5724,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8008277379865902657}
     m_Modifications:
-    - target: {fileID: 100000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}
-      propertyPath: m_Name
-      value: BuildersTorch
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00006591191
@@ -5769,6 +5779,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.005000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}
+      propertyPath: m_Name
+      value: BuildersTorch
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c20e20955b51aeb478a3cea9301948fc, type: 3}

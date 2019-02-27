@@ -8,6 +8,8 @@ public class Phase3Controller : MonoBehaviour
     [SerializeField] private GameObject gameoverController;
     [SerializeField] private GameObject player;
 
+    private bool exiting = false;
+
     void Start()
     {
         player.GetComponent<My_FPSController>().SetStepSound(1);    
@@ -21,6 +23,25 @@ public class Phase3Controller : MonoBehaviour
             gameoverController.GetComponent<GameOver_Controller>().Respawn();
 
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            exiting = true;
+            StartCoroutine(ExitingLevel());
+        }
+        else
+        {
+            exiting = false;
+            StopCoroutine(ExitingLevel());
+        }
+    }
+
+    private IEnumerator ExitingLevel()
+    {
+        yield return new WaitForSeconds(4f);
+        Debug.Log(exiting);
+        if (exiting == true)
+            SceneManager.LoadScene(0);
     }
 
 

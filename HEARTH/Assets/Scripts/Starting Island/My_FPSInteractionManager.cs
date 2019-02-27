@@ -76,8 +76,8 @@ public class My_FPSInteractionManager : MonoBehaviour
             }
         }
 
-        if (_debugRay)
-            DebugRaycast();
+        /*if (_debugRay)
+            DebugRaycast();*/
     }
 
     

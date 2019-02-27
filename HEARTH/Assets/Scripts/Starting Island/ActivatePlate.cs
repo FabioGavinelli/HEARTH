@@ -32,6 +32,8 @@ public class ActivatePlate : MonoBehaviour {
                     this.transform.GetChild(0).gameObject.SetActive(true);
                     script.SetShowable(false);
                     script.SetGrabbing();
+
+                    this.transform.GetComponent<AudioSource>().Play();
                 }
             }
         }

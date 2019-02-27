@@ -59304,9 +59304,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476357021}
-  - component: {fileID: 1476357020}
-  - component: {fileID: 1476357019}
-  - component: {fileID: 1476357018}
   m_Layer: 0
   m_Name: Letter
   m_TagString: Untagged
@@ -59314,49 +59311,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1476357018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476357017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abedab4b7e055df45b492b05b91906d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1476357019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476357017}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6727f109bbe3f449d758b7e3c50203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 7
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!65 &1476357020
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476357017}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7986298, y: 1, z: 1.9137344}
-  m_Center: {x: -0.5760727, y: 0.51, z: 0.14243698}
 --- !u!4 &1476357021
 Transform:
   m_ObjectHideFlags: 0
@@ -73508,6 +73462,7 @@ GameObject:
   - component: {fileID: 1780823461}
   - component: {fileID: 1780823460}
   - component: {fileID: 1780823459}
+  - component: {fileID: 1780823462}
   m_Layer: 0
   m_Name: Letter
   m_TagString: Letter
@@ -73526,8 +73481,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 48.11, y: 38.49, z: 22.29}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 25.434666, y: 38.49, z: 16.474989}
+  m_Center: {x: -0.11950275, y: 0, z: -0.48012543}
 --- !u!23 &1780823456
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73643,6 +73598,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780823454}
   m_CullTransparentMesh: 0
+--- !u!114 &1780823462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780823454}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6727f109bbe3f449d758b7e3c50203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1786571830
 PrefabInstance:
   m_ObjectHideFlags: 0

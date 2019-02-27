@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5272101118155792012}
   - component: {fileID: 5272101118155792011}
   - component: {fileID: 7691659357527828474}
-  - component: {fileID: 7283303352649481131}
   - component: {fileID: 4969904529439199205}
   - component: {fileID: 215741639}
   - component: {fileID: 3149715527562332632}
@@ -116,19 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfSeeds: 10
---- !u!65 &7283303352649481131
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5272101118155792010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4571953, y: 1.6416839, z: 1.5615618}
-  m_Center: {x: 0.018880844, y: -0.0864532, z: -0.780781}
 --- !u!114 &4969904529439199205
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class Phase2Conroller : MonoBehaviour
     private bool lvl2end = false;
     private AudioSource speaker;
     private ConsciousnessController conscController;
+    private bool exiting = false;
 
     private void Start()
     {
@@ -40,6 +41,17 @@ public class Phase2Conroller : MonoBehaviour
         {
             lvl2end = true;
             EndPhase2();
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            exiting = true;
+            StartCoroutine(ExitingLevel());
+        }
+        else
+        {
+            exiting = false;
+            StopCoroutine(ExitingLevel());
         }
 
         /*
@@ -109,6 +121,14 @@ public class Phase2Conroller : MonoBehaviour
     {
         yield return new WaitForSeconds(13f);
         SceneManager.LoadScene(3);
+    }
+
+    private IEnumerator ExitingLevel()
+    {
+        yield return new WaitForSeconds(4f);
+        Debug.Log(exiting);
+        if (exiting == true)
+            SceneManager.LoadScene(0);
     }
 
 }
