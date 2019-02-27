@@ -20711,7 +20711,7 @@ MonoBehaviour:
   infoText: {fileID: 151359694}
   loadingScreen: {fileID: 1673723988}
   exiting: 0
-  phase: 17
+  phase: 0
   gameoverController: {fileID: 1353072407}
   audioController: {fileID: 1398762576}
 --- !u!4 &1442918800
