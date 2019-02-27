@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7717646387298797132}
   - component: {fileID: 3511915421114119291}
   - component: {fileID: 332344187049162685}
+  - component: {fileID: 4434764447783516671}
   - component: {fileID: 8655595240657306625}
   m_Layer: 0
   m_Name: CylinderPot
@@ -80,6 +81,18 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &4434764447783516671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252282792252715232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9796b2a5550b0a4c8774b3e9e51677c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &8655595240657306625
 BoxCollider:
   m_ObjectHideFlags: 0

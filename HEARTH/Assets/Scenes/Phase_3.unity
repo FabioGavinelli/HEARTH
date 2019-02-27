@@ -7520,6 +7520,46 @@ PrefabInstance:
       propertyPath: audioController
       value: 
       objectReference: {fileID: 157198338}
+    - target: {fileID: 4104088205189298337, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104088205189298337, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104088205189298337, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104088205189298337, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104088205189298337, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104088205189298337, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317999140018890603, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076108269741156850, guid: e6d3628aeb02fc145bf03a2417c4ce3f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6d3628aeb02fc145bf03a2417c4ce3f, type: 3}
 --- !u!1001 &101672118
@@ -39434,6 +39474,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CylinderPotStart
       objectReference: {fileID: 0}
+    - target: {fileID: 252282792252715232, guid: 0809ba77051752543b2d087d7066403e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2492352573564382272, guid: 0809ba77051752543b2d087d7066403e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -57852,8 +57897,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410703501}
-  m_LocalRotation: {x: -0.11634466, y: 0.8801474, z: 0.3645689, w: 0.28088093}
-  m_LocalPosition: {x: 224.00317, y: -5.241621, z: 51.619503}
+  m_LocalRotation: {x: -0.16844952, y: 0.818982, z: 0.30071548, w: 0.45876294}
+  m_LocalPosition: {x: 204.76544, y: -22.688969, z: 60.905922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2113867407}
@@ -87797,6 +87842,11 @@ PrefabInstance:
       propertyPath: gameoverController
       value: 
       objectReference: {fileID: 385168379}
+    - target: {fileID: 4850483348169916299, guid: d20cf5f90cc91e447afd06eda2249685,
+        type: 3}
+      propertyPath: airPostProcess
+      value: 
+      objectReference: {fileID: 16513878}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d20cf5f90cc91e447afd06eda2249685, type: 3}
 --- !u!1001 &6504675979023812027

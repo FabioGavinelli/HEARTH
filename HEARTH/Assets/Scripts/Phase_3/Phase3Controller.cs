@@ -1,22 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine;
 
 public class Phase3Controller : MonoBehaviour
 {
     [SerializeField] private GameObject gameoverController;
     [SerializeField] private GameObject player;
-
+    [SerializeField] private GameObject airPostProcess;
+    private PostProcessVolume ppVolume;
     private bool exiting = false;
+    private bool cheat = false;
 
     void Start()
     {
-        player.GetComponent<My_FPSController>().SetStepSound(1);    
+        player.GetComponent<My_FPSController>().SetStepSound(1);
+        ppVolume = airPostProcess.GetComponent<PostProcessVolume>();
     }
 
     void Update()
     {
+
         //RESPAWN
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")))
         {
@@ -34,14 +39,36 @@ public class Phase3Controller : MonoBehaviour
             exiting = false;
             StopCoroutine(ExitingLevel());
         }
+
+        if (Input.GetKey(KeyCode.Backslash))
+        {
+            cheat = true;
+            StartCoroutine(ActivateLifeCheat());
+        }
+        else
+        {
+            cheat = false;
+            StopCoroutine(ActivateLifeCheat());
+        }
     }
 
     private IEnumerator ExitingLevel()
     {
         yield return new WaitForSeconds(4f);
-        Debug.Log(exiting);
         if (exiting == true)
             SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator ActivateLifeCheat()
+    {
+        yield return new WaitForSeconds(4f);
+        if (cheat == true)
+        {
+            player.GetComponent<PlayerBehaviour>().setLifePoints(99999999999999);
+            ppVolume.weight = 0;
+            airPostProcess.SetActive(false);
+        }
+            
     }
 
 

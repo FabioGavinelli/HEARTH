@@ -58,7 +58,7 @@ public class PlayerBehaviour : MonoBehaviour {
         float moveVertical = Input.GetAxis("Vertical");
         bool running = Input.GetKey(KeyCode.LeftShift);
         float speed = ((running) ? 1f : 0.5f);
-        Vector3 offset = standardHeadPosition; /* = ((running) ? runHeadPostion : standardHeadPosition);*/
+        Vector3 offset = standardHeadPosition;
         bool jumping = Input.GetKeyDown(KeyCode.Space);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
@@ -67,7 +67,7 @@ public class PlayerBehaviour : MonoBehaviour {
         // Movement
         if (moveHorizontal != 0 || moveVertical != 0)
         {
-            offset = ((running) ? runHeadPostion : standardHeadPosition);
+            offset = ((running && !menuState) ? runHeadPostion : standardHeadPosition);
             animator.SetFloat(speedAnimHash, speed);
         }
         else
@@ -165,7 +165,7 @@ public class PlayerBehaviour : MonoBehaviour {
                 onlyDisable = false;
                 animator.SetTrigger(liftAnimHash);
                 FPSCharacter.transform.DOPunchPosition(finalHeadPosition, animationTime, 0, 1);
-                FPSCharacter.transform.DOPunchRotation(finalHeadRotation, animationTime, 0 , 1); 
+                FPSCharacter.transform.DOPunchRotation(finalHeadRotation, animationTime, 0, 1); 
                 break;
 
             case (int)animations.StandUp:
@@ -188,7 +188,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private void SetPlayerControls(bool state)
     {
         this.GetComponent<My_FPSController>().enabled = state;
-        this.GetComponent<CharacterController>().enabled = state;
+        //this.GetComponent<CharacterController>().enabled = state;
         SetPlayerToActive(state);
     }
 

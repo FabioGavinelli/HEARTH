@@ -119,7 +119,7 @@ public class My_FPSInteractionManager : MonoBehaviour
         RaycastHit hit;
         
 
-        if (Physics.Raycast(ray, out hit, InteractionDistance))
+        if (Physics.Raycast(ray, out hit, InteractionDistance) && pb.IsPlayerActive())
         {
             //Check if is grabbable
             Grabbable grabbableObject = hit.transform.GetComponent<Grabbable>();
@@ -170,12 +170,13 @@ public class My_FPSInteractionManager : MonoBehaviour
 
             if (hit.transform.tag == "Flowerpot")
             {
-                if (Input.GetKeyDown(KeyCode.E) && pb.GetSeedCount() > 0)
+                if (Input.GetKeyDown(KeyCode.E) && pb.GetSeedCount() > 0 && hit.transform.gameObject.GetComponent<PotController>().GetPlanted() == false)
                 {
                     pb.RemoveSeed();
                     Instantiate(tree, hit.transform.position + new Vector3(0f,0.5f,0f), hit.transform.rotation);
                     pb.setSafe(true);
-                    hit.transform.gameObject.GetComponent<Collider>().enabled = false;
+                    //hit.transform.gameObject.GetComponent<Collider>().enabled = false;
+                    hit.transform.gameObject.GetComponent<PotController>().SetPlanted();
                     uiTextNumSeed.text = pb.GetSeedCount().ToString();
                 }
             }
