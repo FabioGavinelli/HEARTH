@@ -44,8 +44,8 @@ public class RaycastOutline : MonoBehaviour
         {
             //Check if is outlinable
             OutlineObj outlinedObj = hit.transform.GetComponent<OutlineObj>();
-
             _pointingOutlinable = outlinedObj != null ? true : false;
+
             if (_pointingOutlinable)
             {
                 outlinedObj.enabled = true ;
@@ -57,8 +57,14 @@ public class RaycastOutline : MonoBehaviour
 
             pointed = outlinedObj;
         }
-        if(pointed != null && _pointingOutlinable == false)
-            pointed.enabled = false;
+        else
+        {
+            if (pointed != null/* && _pointingOutlinable == false*/)
+                pointed.enabled = false;
+        }
+
+        //if(pointed != null && _pointingOutlinable == false)
+               //pointed.enabled = false;
     }
 
     private void DebugRaycast()

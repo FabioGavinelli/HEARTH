@@ -3775,6 +3775,10 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: 0.0016646386
       objectReference: {fileID: 0}
+    - target: {fileID: 1506974515, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
+      propertyPath: outlineWidth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3548167654422863822, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
     - {fileID: 65427502789043504, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
@@ -7928,6 +7932,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.013197869
       objectReference: {fileID: 0}
+    - target: {fileID: 1506974515, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
+      propertyPath: outlineWidth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3548167654422863822, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
     - {fileID: 65427502789043504, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
@@ -8882,6 +8890,10 @@ PrefabInstance:
     - target: {fileID: 4392577601580622, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 91.357
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506974515, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
+      propertyPath: outlineWidth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3548167654422863822, guid: 1f54ef92f9686ad488aebb2a489d2861, type: 3}
@@ -33808,7 +33820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fpsCameraT: {fileID: 5590705720498992767}
   _debugRay: 1
-  _interactionDistance: 1.5
+  _interactionDistance: 1.7
   _pushDistance: 0
   _pushForce: 0
   _grabDistance: 1
@@ -34009,7 +34021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fpsCameraT: {fileID: 5590705720498992767}
-  _interactionDistance: 1.5
+  _interactionDistance: 1.7
   _debugRay: 1
 --- !u!4 &5590705720498992765
 Transform:
@@ -34277,6 +34289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7781811292054939040, guid: 98e36ce774d1a4f4b91bb903867bc1fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6649114065657385022, guid: 98e36ce774d1a4f4b91bb903867bc1fa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34385,11 +34402,6 @@ PrefabInstance:
     - target: {fileID: 6649114065657385020, guid: 98e36ce774d1a4f4b91bb903867bc1fa,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7781811292054939040, guid: 98e36ce774d1a4f4b91bb903867bc1fa,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1021193963540430580, guid: 98e36ce774d1a4f4b91bb903867bc1fa,
