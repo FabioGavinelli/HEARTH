@@ -16,6 +16,8 @@ public class Phase2Conroller : MonoBehaviour
     [SerializeField] private GameObject obstaclesController;
     [SerializeField] private GameObject blackScreenCanvas;
     [SerializeField] private VideoClip endLevelVideo;
+    [SerializeField] private Canvas infoText;
+    [SerializeField] private GameObject loadingScreen;
     private bool gameover = false;
     private bool lvl2end = false;
     private AudioSource speaker;
@@ -24,6 +26,7 @@ public class Phase2Conroller : MonoBehaviour
 
     private void Start()
     {
+        ResetInfoText();
         speaker = GetComponent<AudioSource>();
         conscController = GameObject.FindGameObjectWithTag("Consciousness").GetComponent<ConsciousnessController>();
         conscController.PlayAudioClip(0);
@@ -46,11 +49,13 @@ public class Phase2Conroller : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             exiting = true;
+            SetInfoText("exiting");
             StartCoroutine(ExitingLevel());
         }
         else
         {
             exiting = false;
+            ResetInfoText();
             StopCoroutine(ExitingLevel());
         }
 
@@ -120,7 +125,19 @@ public class Phase2Conroller : MonoBehaviour
     private IEnumerator LoadNewSceneAfterVideo()
     {
         yield return new WaitForSeconds(13f);
-        SceneManager.LoadScene(3);
+        StartCoroutine(LoadSceneAsyncronous());
+    }
+
+    private IEnumerator LoadSceneAsyncronous()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync(3);
+        blackScreenCanvas.SetActive(false);
+        loadingScreen.SetActive(true);
+        while (!async.isDone)
+        {
+            loadingScreen.transform.GetChild(2).transform.Rotate(Vector3.forward * 1);
+            yield return null;
+        }
     }
 
     private IEnumerator ExitingLevel()
@@ -131,4 +148,13 @@ public class Phase2Conroller : MonoBehaviour
             SceneManager.LoadScene(0);
     }
 
+    private void SetInfoText(string info)
+    {
+        infoText.GetComponentInChildren<Text>().text = info;
+    }
+
+    private void ResetInfoText()
+    {
+        SetInfoText("");
+    }
 }

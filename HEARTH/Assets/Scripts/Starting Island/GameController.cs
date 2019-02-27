@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private GameObject blackScreenCanvas;
     [SerializeField] private GameObject menuCanvas;
+    [SerializeField] private Canvas infoText;
+    [SerializeField] private GameObject loadingScreen;
     private PlayerBehaviour pb;
     private Animator playerAnimator;
     private bool ended = false;
@@ -43,7 +45,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         //Cursor.visible = false;
-
+        ResetInfoText();
         //Set Up Variables
         //respawnLocation = player.transform.position;
         speaker = GetComponent<AudioSource>();
@@ -59,11 +61,13 @@ public class GameController : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             exiting = true;
+            SetInfoText("exiting");
             StartCoroutine(ExitingLevel());
         }
         else
         {
             exiting = false;
+            ResetInfoText();
             StopCoroutine(ExitingLevel());
         }
 
@@ -297,7 +301,19 @@ public class GameController : MonoBehaviour
     private IEnumerator LoadNewSceneAfterVideo()
     {
         yield return new WaitForSeconds(11f);
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
+        StartCoroutine(LoadSceneAsyncronous());
+    }
+
+    private IEnumerator LoadSceneAsyncronous()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync(2);
+        loadingScreen.SetActive(true);
+        while (!async.isDone)
+        {
+            loadingScreen.transform.GetChild(2).transform.Rotate(Vector3.forward * 1);
+            yield return null;
+        }
     }
 
     private IEnumerator ExitingLevel()
@@ -306,6 +322,16 @@ public class GameController : MonoBehaviour
         Debug.Log(exiting);
         if(exiting == true)
             SceneManager.LoadScene(0);
+    }
+
+    private void SetInfoText(string info)
+    {
+        infoText.GetComponentInChildren<Text>().text = info;
+    }
+
+    private void ResetInfoText()
+    {
+        SetInfoText("");
     }
 
 }
