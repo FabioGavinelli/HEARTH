@@ -47,6 +47,7 @@ MonoBehaviour:
   player: {fileID: 0}
   gameOverCanvas: {fileID: 4317999140018890603}
   audioController: {fileID: 0}
+  loadingScreen: {fileID: 0}
 --- !u!1001 &4235186729593070059
 PrefabInstance:
   m_ObjectHideFlags: 0

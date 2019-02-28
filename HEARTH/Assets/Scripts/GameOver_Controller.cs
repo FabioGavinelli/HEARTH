@@ -10,6 +10,7 @@ public class GameOver_Controller : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject audioController;
+    [SerializeField] private GameObject loadingScreen;
     private bool respawnable = false;
     private Vector3 respawnLocation;
     private Quaternion respawnRotation;
@@ -41,8 +42,18 @@ public class GameOver_Controller : MonoBehaviour
             //StartCoroutine(volumeUp(pianoSound, 0.2f, 2f, true));
             //reset step sound
             player.GetComponent<My_FPSController>().SetStepSound(0);
-            if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+                StartCoroutine(ReloadAsync());
+        }
+    }
+
+    IEnumerator ReloadAsync()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        loadingScreen.SetActive(true);
+        while (!async.isDone)
+        {
+            yield return null;
         }
     }
 

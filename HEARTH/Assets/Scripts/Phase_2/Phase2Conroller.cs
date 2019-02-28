@@ -135,7 +135,6 @@ public class Phase2Conroller : MonoBehaviour
         loadingScreen.SetActive(true);
         while (!async.isDone)
         {
-            loadingScreen.transform.GetChild(2).transform.Rotate(Vector3.forward * 1);
             yield return null;
         }
     }
