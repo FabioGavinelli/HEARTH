@@ -23840,7 +23840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1791284672
 Transform:
   m_ObjectHideFlags: 0
@@ -23862,7 +23862,7 @@ LightProbeGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791284671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_SourcePositions:
   - {x: 0.94934154, y: -2.662875, z: 0.9847657}
   - {x: 1.1369436, y: -2.2121868, z: -0.40428317}
@@ -29002,7 +29002,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2348d1a7811ea964792507fe3b6c67f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27da427daf532f94d89c122d70ba2072, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
