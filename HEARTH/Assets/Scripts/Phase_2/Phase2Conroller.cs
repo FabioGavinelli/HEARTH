@@ -18,6 +18,7 @@ public class Phase2Conroller : MonoBehaviour
     [SerializeField] private VideoClip endLevelVideo;
     [SerializeField] private Canvas infoText;
     [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private GameObject audioController;
     private bool gameover = false;
     private bool lvl2end = false;
     private AudioSource speaker;
@@ -35,7 +36,7 @@ public class Phase2Conroller : MonoBehaviour
     private void Update()
     {
         //RESPAWN
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")))
+        if ((Input.GetKeyDown(KeyCode.Mouse0)) && gameoverController.GetComponent<GameOver_Controller>().GetRespawnState() == false)
         {
             gameoverController.GetComponent<GameOver_Controller>().Respawn();
         }
@@ -81,7 +82,7 @@ public class Phase2Conroller : MonoBehaviour
         //fade to black
         blackScreenCanvas.SetActive(true);
         StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 2f));
-
+        audioController.GetComponent<Sound_Controller>().StopAllAudioSources();
         //start video
         this.GetComponent<VideoPlayer>().clip = endLevelVideo;
         StartCoroutine(StartEndVideo());

@@ -13,6 +13,7 @@ public class GameOver_Controller : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     private bool respawnable = false;
     private Vector3 respawnLocation;
+    private bool respawning = false;
     private Quaternion respawnRotation;
 
     // Start is called before the first frame update
@@ -51,6 +52,7 @@ public class GameOver_Controller : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         loadingScreen.SetActive(true);
+        respawning = true;
         while (!async.isDone)
         {
             yield return null;
@@ -82,9 +84,11 @@ public class GameOver_Controller : MonoBehaviour
         gameOverCanvas.SetActive(true);
         StartCoroutine(FadeTextToFullAlpha(10f, gameOverCanvas.transform.GetChild(1).gameObject.GetComponent<Text>()));
         //stop music
-        for (int i = 0; i < audioController.GetComponent<Sound_Controller>().getAudioSourceLenght(); i++)
-        {
-            audioController.GetComponent<Sound_Controller>().StopAudioSource(i);
-        }
+        audioController.GetComponent<Sound_Controller>().StopAllAudioSources();
+    }
+
+    public bool GetRespawnState()
+    {
+        return respawning;
     }
 }

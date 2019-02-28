@@ -9669,6 +9669,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 718039095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &157198340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4389102528438892327, guid: 804525b334199b0409201e918100ed3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 718039095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157198338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0327785f0bd5748a28c58a710cdf6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &162312292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10110,6 +10122,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: b544816461f324e56a39767fdeb5b114,
     type: 3}
   m_PrefabInstance: {fileID: 190201311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &190781712 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7270101397364946167, guid: e9f897012f69af84c817fb288c1b3cb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 695137348}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &193497747
 PrefabInstance:
@@ -20907,6 +20925,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2070406188}
         m_MethodName: LoadCredit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 157198340}
+        m_MethodName: StopAllAudioSources
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33898,8 +33927,23 @@ PrefabInstance:
     - target: {fileID: 4389102528438892327, guid: 804525b334199b0409201e918100ed3a,
         type: 3}
       propertyPath: audioSources.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4389102528438892327, guid: 804525b334199b0409201e918100ed3a,
+        type: 3}
+      propertyPath: audioSources.Array.data[0]
+      value: 
+      objectReference: {fileID: 190781712}
+    - target: {fileID: 4389102528438892327, guid: 804525b334199b0409201e918100ed3a,
+        type: 3}
+      propertyPath: audioSources.Array.data[1]
+      value: 
+      objectReference: {fileID: 525572189}
+    - target: {fileID: 4389102528438892327, guid: 804525b334199b0409201e918100ed3a,
+        type: 3}
+      propertyPath: audioSources.Array.data[2]
+      value: 
+      objectReference: {fileID: 788196724}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 804525b334199b0409201e918100ed3a, type: 3}
 --- !u!1001 &718076718
@@ -58913,6 +58957,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 157198340}
+        m_MethodName: StopAllAudioSources
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1376718189
@@ -81840,8 +81895,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942013945}
-  m_LocalRotation: {x: 0.13398875, y: 0.39957142, z: 0.05916639, w: -0.90492487}
-  m_LocalPosition: {x: 224.60396, y: -4.7566643, z: 51.081715}
+  m_LocalRotation: {x: 0.48590186, y: 0.20360881, z: 0.11753051, w: -0.8418013}
+  m_LocalPosition: {x: 445.92023, y: -435.7219, z: 41.796143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2113867407}

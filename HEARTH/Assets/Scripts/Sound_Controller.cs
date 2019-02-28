@@ -25,6 +25,13 @@ public class Sound_Controller : MonoBehaviour
         audioSources[sourceIndex].Stop();
     }
 
+    public void StopAllAudioSources()
+    {
+        if (audioSources.Length == 0) return;
+        for (int i = 0; i < audioSources.Length; i++)
+            audioSources[i].Stop();
+    }
+
     public void PlayAudioSource(int sourceIndex, int clipIndex)
     {
         if (clipIndex > audioClips.Length || sourceIndex > audioSources.Length || audioSources.Length == 0 || audioClips.Length == 0) return;

@@ -26,7 +26,7 @@ public class Phase3Controller : MonoBehaviour
     {
 
         //RESPAWN
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey("enter")))
+        if ((Input.GetKeyDown(KeyCode.Mouse0)) && gameoverController.GetComponent<GameOver_Controller>().GetRespawnState() == false)
         {
             gameoverController.GetComponent<GameOver_Controller>().Respawn();
 
