@@ -81,11 +81,11 @@ public class Phase2Conroller : MonoBehaviour
 
         //fade to black
         blackScreenCanvas.SetActive(true);
-        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 2f));
+        StartCoroutine(FadeOutToBlack(blackScreenCanvas.GetComponentInChildren<Image>(), 3.5f));
         audioController.GetComponent<Sound_Controller>().StopAllAudioSources();
         //start video
         this.GetComponent<VideoPlayer>().clip = endLevelVideo;
-        StartCoroutine(StartEndVideo());
+        this.GetComponent<VideoPlayer>().Prepare();
     }
 
     private IEnumerator FadeOutToBlack(Image t, float time)
@@ -97,6 +97,7 @@ public class Phase2Conroller : MonoBehaviour
             Debug.Log("Fade out to black, alpha: " + t.color.a);
             yield return null;
         }
+        StartCoroutine(StartEndVideo());
     }
 
     private IEnumerator FadeInByBlack(Image t, float time)
@@ -112,15 +113,20 @@ public class Phase2Conroller : MonoBehaviour
 
     private IEnumerator StartEndVideo()
     {
-        blackScreenCanvas.transform.GetChild(0).transform.gameObject.SetActive(false);
-        yield return new WaitForSeconds(10f);
+        while (!this.GetComponent<VideoPlayer>().isPrepared)
+        {
+            yield return null;
+        }
         speaker.volume = 0.5f;
         this.GetComponent<VideoPlayer>().Play();
-        StartCoroutine(FadeInByBlack(blackScreenCanvas.transform.GetChild(1).GetComponent<Image>(), 1f));
-        //blackScreenCanvas.SetActive(false);
-        //blackScreenCanvas.transform.GetChild(1).transform.gameObject.SetActive(false);
-        blackScreenCanvas.transform.GetChild(0).transform.gameObject.SetActive(true);
+        StartCoroutine(WaitToDisableBlackScreen());
         StartCoroutine(LoadNewSceneAfterVideo());
+    }
+
+    IEnumerator WaitToDisableBlackScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        blackScreenCanvas.SetActive(false);
     }
 
     private IEnumerator LoadNewSceneAfterVideo()

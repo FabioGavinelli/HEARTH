@@ -5678,8 +5678,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487451082}
-  m_LocalRotation: {x: 0.12941599, y: -0.46328068, z: -0.0685941, w: -0.8740237}
-  m_LocalPosition: {x: 27.032501, y: -3.7663302, z: -6.418088}
+  m_LocalRotation: {x: 0.3336391, y: -0.4764469, z: -0.20171812, w: -0.78803116}
+  m_LocalPosition: {x: 30.34003, y: -22.96812, z: -3.7093322}
   m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1382230500}
@@ -20807,7 +20807,7 @@ MonoBehaviour:
   infoText: {fileID: 151359694}
   loadingScreen: {fileID: 1673723988}
   exiting: 0
-  phase: 0
+  phase: 24
   gameoverController: {fileID: 1353072407}
   audioController: {fileID: 1398762576}
 --- !u!4 &1442918800
@@ -20840,7 +20840,7 @@ VideoPlayer:
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 2
+  m_RenderMode: 1
   m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
@@ -34736,6 +34736,11 @@ PrefabInstance:
     - target: {fileID: 9168602815340136095, guid: 627e0117ae242874e8efeac39596cfd7,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791898031160849293, guid: 627e0117ae242874e8efeac39596cfd7,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9168107078119336861, guid: 627e0117ae242874e8efeac39596cfd7,
